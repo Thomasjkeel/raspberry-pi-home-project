@@ -1,11 +1,11 @@
 """
-    Main application file
+    Description
     =====================
-    run using a crontab job e.g. @reboot python <PATH TO FILE>/home_chores.py
-
+    Main application file
+    
     Requirements
     ====================
-    Raspberry Pi with 
+    Raspberry Pi with SENSE HAT
 
     Joystick Functionality
     =====================
@@ -21,7 +21,8 @@
 
     Notes:
     ====================
-    Email addresses will need to be stored in a seperate file within the Raspberry Pi's filesystem
+    Email addresses will need to be stored in a seperate file within the Raspberry Pi's filesystem.
+    Can be run using a crontab job e.g. @reboot python <PATH TO FILE>/home_chores.py
 
 """
 from sense_hat import SenseHat

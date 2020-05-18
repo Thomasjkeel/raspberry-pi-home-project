@@ -1,5 +1,11 @@
 """
+    Description
+    =====================
     Class for sending emails from the Raspberry Pi
+    
+    References
+    =====================
+    https://www.bc-robotics.com/tutorials/sending-email-using-python-raspberry-pi/
 """
 
 import smtplib
