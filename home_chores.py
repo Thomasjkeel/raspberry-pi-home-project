@@ -111,6 +111,7 @@ def make_email(sender, name, email_add, current_date):
 def distribute_emails():
     global SEND_EMAILS, EMAIL_SENT_TODAY
     while True:
+        print(CHORE_TXT)
         if SEND_EMAILS:
             current_time = time.localtime()
             if current_time.tm_hour == EMAIL_TIME_HOUR and current_time.tm_min == EMAIL_TIME_MINUTE and not EMAIL_SENT_TODAY:
