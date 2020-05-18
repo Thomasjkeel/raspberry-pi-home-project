@@ -93,7 +93,7 @@ def watch_pi():
                               (not SEND_EMAILS), back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED )
                         SEND_EMAILS = not SEND_EMAILS
                     elif event.direction == 'middle':
-                        print('dancing baby...')
+                        print('dance baby...')
                         dance_baby(sense)
                     else:
                         pass
