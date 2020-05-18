@@ -17,8 +17,8 @@ sense.set_rotation(180)
 EMAIL_ADDRESSES = {'Tom': 'thomasjames.keel@gmail.com', 'Freya': 'freyasienna.k@gmail.com',
                    'Mum': 'amandajane.keel@gmail.com', 'Jonathon': 'jonpage90@hotmail.com'}
 
-EMAIL_TIME_HOUR = 16
-EMAIL_TIME_MINUTE = 22
+EMAIL_TIME_HOUR = 8
+EMAIL_TIME_MINUTE = 30
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
@@ -96,9 +96,12 @@ def watch_pi():
                 
 
 def make_email(sender, name, email_add, current_date):
+    
     emailSubject = "Chores for %s" % (current_date)
-    emailContent = "Hello %s This is a test!" % (name)
-    sender.sendmail(email_add, emailSubject, emailContent)
+    _, week_ending = chores.get_current_week_range()
+    emailContent = "Hello %s! \n Your Daily Chores for today are: %s \n Chores which will \
+        need to be completed by %s are: %s. \n Raspberry Pi out." % (name, daily_chores, week_ending, weekly_chores)
+    sender.sendmail('thomasjames.keel@googlemail.com', emailSubject, emailContent)
     print(name, 'sent!')
     return
 
