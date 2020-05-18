@@ -97,7 +97,7 @@ def watch_pi():
                         dance_baby(sense)
                     else:
                         pass
-                    LAST = 's'
+                    LAST = 'a'
                 
                 
 
