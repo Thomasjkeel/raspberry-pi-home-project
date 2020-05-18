@@ -1,3 +1,4 @@
+print('hello')
 from sense_hat import SenseHat
 import time
 import smtplib
