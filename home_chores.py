@@ -24,6 +24,7 @@ SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.08)
 
+RANDOM_EVENTS = ['Board Game', 'Book Club', 'Garden Time', 'Movie Time', 'You Decide', 'Craft Club', 'Party Game']
 # sendTo = 'thomasjames.keel@gmail.com'
 # emailSubject = "Hello Tom"
 # emailContent = "This is a test and you smell great goodbye!"
@@ -64,10 +65,13 @@ def watch_pi():
                         print('getting date...')
                         get_date(sense)
                     elif event.direction == 'right':
-                        pass
+                        sense.show_message('Controls: U: Chores D: Weather L: Date R: Controls M: Random Event', back_colour=BACK_COLOUR,
+                                           text_colour=TEXT_COLOUR, scroll_speed=(0.03))
                     elif event.direction == 'middle':
                         print('getting random event...')
-                        pass
+                        rand_event = RANDOM_EVENTS[random.randint(1, len(RANDOM_EVENTS))]
+                        sense.show_message('Random event is: %s' % (rand_event), back_colour=BACK_COLOUR,
+                                           text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     else:
                         pass
                 else:
@@ -92,6 +96,7 @@ def watch_pi():
                         dance_baby(sense)
                     else:
                         pass
+                    LAST = 's'
                 LAST = event.direction
 
 
