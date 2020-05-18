@@ -9,6 +9,7 @@ import subprocess
 sense = SenseHat()
 sense.clear()
 sense.low_light = True
+sense.set_rotation(180)
 
 sender = emailer.Emailer()
 
