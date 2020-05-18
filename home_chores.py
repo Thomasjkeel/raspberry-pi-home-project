@@ -32,8 +32,9 @@ r = (255, 0, 0)
 b = (0, 100, 255)
 y = (255, 255, 0)
 g = (0, 255, 0)
+n = (0, 0, 0)
 
-BACK_COLOUR = None
+BACK_COLOUR = n
 TEXT_COLOUR = r
 
 
