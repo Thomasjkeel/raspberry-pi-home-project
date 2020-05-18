@@ -90,7 +90,7 @@ def watch_pi():
                         pass
                     else:
                         pass
-            LAST = event.direction
+                LAST = event.direction
 
 
 def distribute_emails():
