@@ -87,6 +87,6 @@ def get_chores():
     current_day, last_day = get_current_week_range()
     chore_message += 'Weekly Chores for {0} to {1}'.format(current_day, last_day)
     for wkey in WEEKLY_CHORES.keys():
-        chore_message += wkey + ": " + WEEKLY_CHORES[wkey][WEEKLY_COUNTER] + '  '
+        chore_message += wkey + ": " + WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4] + '  '
 
     return chore_message
