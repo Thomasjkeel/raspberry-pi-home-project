@@ -38,20 +38,20 @@ def read_and_update_day_counter():
     with open('day_log.txt') as json_file:
         day_log = json.load(json_file)
     # read last day and counter value
-    last_day, current_counter = day_log.popitem()
+    last_day, current_counters = day_log.popitem()
     # then how many days away:
     today = datetime.datetime.now()
     difference = today - datetime.datetime.strptime(last_day, '%d %b %Y')
     days_away = difference.days
-    current_counter = (days_away + current_counter[0])
-    week_counter = current_counter[1]
+    day_counter = (days_away + current_counters[0])
+    week_counter = current_counters[1]
     day_log = {}
-    DAY_COUNTER = current_counter % NUMBER_PEOPLE
+    DAY_COUNTER = day_counter % NUMBER_PEOPLE
     for i in range(0, 7):
         if week_counter % 7 == 0:
             WEEKLY_COUNTER += 1
-        day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')] = [current_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
-        current_counter += 1
+        day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
+        day_counter += 1
         week_counter += 1
         
     # re-save the file
