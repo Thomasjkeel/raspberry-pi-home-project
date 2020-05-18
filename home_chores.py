@@ -103,9 +103,10 @@ def make_email(sender, name, email_add, current_date):
     weekly_chores = ("<li>".join(['%s']*len(all_chores['weekly'][name[0]]))+"</li>") % tuple(all_chores['weekly'][name[0]])
     emailSubject = "Chores for %s" % (current_date)
     _, week_ending = chores.get_current_week_range()
-    emailContent = "Hello %s! <br><br> Your Daily Chores for today are: <br> <ul> %s </ul>. <br><br> Chores which will \
+    emailContent = "Hello %s! <br><br> Your Daily Chores for today are: <br> <ul> %s </ul> <br><br> Chores which will \
         need to be completed by %s are: <br> <ul> %s </ul> <br><br> Raspberry Pi out." % (name, daily_chores, str(week_ending), weekly_chores)
-    sender.sendmail('thomasjames.keel@googlemail.com', emailSubject, emailContent)
+    print(emailContent)
+    # sender.sendmail('thomasjames.keel@googlemail.com', emailSubject, emailContent)
     print(name, 'sent!')
     return
 
