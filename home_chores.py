@@ -74,8 +74,8 @@ def watch_pi():
                                            text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     else:
                         pass
+                    LAST = event.direction
                 else:
-                    LAST = 's'
                     ## double clicks ##
                     if event.direction == 'up':
                         sense.show_message('powering off...', text_colour=r, scroll_speed=SCROLL_SPEED)
@@ -88,20 +88,18 @@ def watch_pi():
                         fact = collect_facts.collect_facts()
                         sense.show_message(
                             fact, back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
-                        break
                     elif event.direction == 'right':
                         sense.show_message('toggling emails... setting to: %s ' %
                               (not SEND_EMAILS), back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED )
                         SEND_EMAILS = not SEND_EMAILS
-                        break
                     elif event.direction == 'middle':
                         print('dancing baby...')
                         dance_baby(sense)
-                        break
                     else:
                         pass
-                    
-                LAST = event.direction
+                    LAST = 's'
+                
+                
 
 
 def distribute_emails():
