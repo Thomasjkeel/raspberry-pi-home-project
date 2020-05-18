@@ -101,7 +101,7 @@ def watch_pi():
 
 
 def distribute_emails():
-    global SEND_EMAILS
+    global SEND_EMAILS, EMAIL_SENT_TODAY
     while True:
         if SEND_EMAILS:
             current_time = time.localtime()
