@@ -101,8 +101,8 @@ def make_email(sender, name, email_add, current_date):
     _, all_chores = chores.get_chores()    
     emailSubject = "Chores for %s" % (current_date)
     _, week_ending = chores.get_current_week_range()
-    emailContent = "Hello %s! \n Your Daily Chores for today are: %s \n Chores which will \
-        need to be completed by %s are: %s. \n Raspberry Pi out." % (name, all_chores['daily'], week_ending, all_chores['weekly'])
+    emailContent = "Hello %s! \n Your Daily Chores for today are: %s. \n Chores which will \
+        need to be completed by %s are: %s. \n Raspberry Pi out." % (name, all_chores['daily'][name[0]], week_ending, all_chores['weekly'][name[0]])
     sender.sendmail('thomasjames.keel@googlemail.com', emailSubject, emailContent)
     print(name, 'sent!')
     return
@@ -111,8 +111,6 @@ def make_email(sender, name, email_add, current_date):
 def distribute_emails():
     global SEND_EMAILS, EMAIL_SENT_TODAY
     while True:
-        _, all_chores = chores.get_chores()
-        print(all_chores)
         if SEND_EMAILS:
             current_time = time.localtime()
             if current_time.tm_hour == EMAIL_TIME_HOUR and current_time.tm_min == EMAIL_TIME_MINUTE and not EMAIL_SENT_TODAY:
