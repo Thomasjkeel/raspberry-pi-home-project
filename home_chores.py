@@ -12,8 +12,8 @@ sense.low_light = True
 
 sender = emailer.Emailer()
 
-EMAIL_ADDRESSES = {'Tom':'thomasjames.keel@gmail.com', 'Freya':'freyasienna.k@gmail.com',\
-                    'Mum':'amandajane.keel@gmail.com', 'Jonathon': 'jonpage90@hotmail.com'}
+EMAIL_ADDRESSES = {'Tom': 'thomasjames.keel@gmail.com', 'Freya': 'freyasienna.k@gmail.com',
+                   'Mum': 'amandajane.keel@gmail.com', 'Jonathon': 'jonpage90@hotmail.com'}
 
 EMAIL_TIME_HOUR = 8
 EMAIL_TIME_MINUTE = 1
@@ -27,6 +27,15 @@ SCROLL_SPEED = (0.1)
 
 # # sender.sendmail(sendTo, emailSubject, emailContent)
 # print('sent!')
+
+r = (255, 0, 0)
+b = (0, 100, 255)
+y = (255, 255, 0)
+g = (0, 255, 0)
+
+BACK_COLOUR = y
+TEXT_COLOUR = g
+
 
 def watch_pi():
     while True:
@@ -43,14 +52,16 @@ def watch_pi():
                     elif event.direction == 'down':
                         print('getting chores...')
                         chore_message = chores.get_chores()
-                        sense.show_message(chore_message, scroll_speed=SCROLL_SPEED)
+                        sense.show_message(chore_message, back_colour=BACK_COLOUR,
+                                           text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'left':
                         print('getting date...')
                         get_date(sense)
                     elif event.direction == 'right':
                         print('getting facts...')
                         fact = collect_facts.collect_facts()
-                        sense.show_message(fact, scroll_speed=SCROLL_SPEED)
+                        sense.show_message(
+                            fact, back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'middle':
                         print('dancing baby...')
                         dance_baby(sense)
@@ -61,13 +72,14 @@ def watch_pi():
                     if event.direction == 'up':
                         print('powering off...')
                         time.sleep(10)
-                        subprocess.Popen(['shutdown','-h','now'])
+                        subprocess.Popen(['shutdown', '-h', 'now'])
                     elif event.direction == 'down':
                         pass
                     elif event.direction == 'left':
                         pass
                     elif event.direction == 'right':
-                        print('toggling emails... setting to: %s ' % (not SEND_EMAILS))
+                        print('toggling emails... setting to: %s ' %
+                              (not SEND_EMAILS))
                         SEND_EMAILS = not SEND_EMAILS
                     elif event.direction == 'middle':
                         print('getting random event...')
@@ -99,17 +111,21 @@ def get_weather(sense):
     humidity = round(humidity, 1)
     pressure = sense.get_pressure()
     pressure = round(pressure, 1)
-    sense.show_message("Temperature: %s.C  Humidity: %s%%  Pressure: %s mb" % (temp, humidity, pressure), scroll_speed=SCROLL_SPEED)
+    sense.show_message("Temperature: %s.C  Humidity: %s%%  Pressure: %s mb" % (temp, humidity, pressure),
+                       back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
     return
 
 
 def get_date(sense):
     local_time = time.ctime(time.time())
-    sense.show_message("Date: %s " % (local_time), scroll_speed=SCROLL_SPEED)
+    sense.show_message("Date: %s " % (local_time), back_colour=BACK_COLOUR,
+                       text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
     return
+
 
 def dance_baby(sense):
     return
+
 
 if __name__ == "__main__":
     t1 = threading.Thread(target=watch_pi)
@@ -120,4 +136,3 @@ if __name__ == "__main__":
     t2.start()
     while True:
         pass
-
