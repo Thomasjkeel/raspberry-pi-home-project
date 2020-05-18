@@ -1,5 +1,6 @@
 from sense_hat import SenseHat
 import time
+import datetime
 import smtplib
 from common import emailer, chores, collect_facts
 import threading
@@ -119,7 +120,7 @@ def get_weather(sense):
 
 
 def get_date(sense):
-    local_time = time.ctime(time.time())
+    local_time = datetime.datetime.now().strftime('%d %b %Y %H:%M:%S')
     sense.show_message("Date: %s " % (local_time), back_colour=BACK_COLOUR,
                        text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
     return
