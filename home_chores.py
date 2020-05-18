@@ -34,7 +34,7 @@ y = (255, 255, 0)
 g = (0, 255, 0)
 
 BACK_COLOUR = y
-TEXT_COLOUR = g
+TEXT_COLOUR = r
 
 
 def watch_pi():
