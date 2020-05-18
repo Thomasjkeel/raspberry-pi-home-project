@@ -1,4 +1,3 @@
-print('hello')
 from sense_hat import SenseHat
 import time
 import smtplib
@@ -110,13 +109,13 @@ def get_date(sense):
 def dance_baby(sense):
     return
 
-# if __name__ == "__main__":
-#     t1 = Thread(target = watch_pi)
-#     t2 = Thread(target = distribute_emails)
-#     t1.setDaemon(True)
-#     t2.setDaemon(True)
-#     t1.start()
-#     t2.start()
-#     while True:
-#         pass
+if __name__ == "__main__":
+    t1 = Thread(target = watch_pi)
+    t2 = Thread(target = distribute_emails)
+    t1.setDaemon(True)
+    t2.setDaemon(True)
+    t1.start()
+    t2.start()
+    while True:
+        pass
 
