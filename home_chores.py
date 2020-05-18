@@ -99,8 +99,8 @@ def watch_pi():
 
 def make_email(sender, name, email_add, current_date):
     _, all_chores = chores.get_chores()  
-    daily_chores = '<li> , '.join(['%s </li>']*len(all_chores['daily'][name[0]]))
-    weekly_chores = '<li> , '.join(['%s </li>']*len(all_chores['weekly'][name[0]]))
+    daily_chores = ("<li>".join(['%.2f']*len(all_chores['daily'][name[0]]))+"</li>") % tuple(all_chores['daily'][name[0]])
+    weekly_chores = ("<li>".join(['%.2f']*len(all_chores['weekly'][name[0]]))+"</li>") % tuple(all_chores['weekly'][name[0]])
     emailSubject = "Chores for %s" % (current_date)
     _, week_ending = chores.get_current_week_range()
     emailContent = "Hello %s! <br><br> Your Daily Chores for today are: <br> <ul> %s </ul>. <br><br> Chores which will \
