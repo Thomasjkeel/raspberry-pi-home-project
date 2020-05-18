@@ -19,8 +19,8 @@ EMAIL_ADRESSES_TXT = '/home/pi/Documents/home_chores_project/email_addresses.txt
 with open(EMAIL_ADRESSES_TXT) as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
 
-EMAIL_TIME_HOUR = 8
-EMAIL_TIME_MINUTE = 30
+EMAIL_TIME_HOUR = 16
+EMAIL_TIME_MINUTE = 45
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
@@ -117,6 +117,7 @@ def distribute_emails():
                 sense.show_message('sending emails',  back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                 sender = emailer.Emailer()
                 for name, email_add in EMAIL_ADDRESSES.items():
+                    print(name, email_add)
                     current_date = datetime.datetime.now().strftime('%d %b')
                     make_email(sender, name, email_add, current_date)
                 EMAIL_SENT_TODAY = True
