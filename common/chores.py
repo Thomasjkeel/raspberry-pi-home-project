@@ -2,14 +2,14 @@
     Functions for determining whose chores it is today 
 """
 
-import datetime 
+import datetime
 import time
 import numpy
 import json
 
 # {'6':'Sunday','0':'Monday'}
 
-datetime.datetime.now().weekday 
+datetime.datetime.now().weekday
 
 ALL_PEOPLE = numpy.array(['T', 'J', 'M', 'F'])
 DAY_COUNTER = 0
@@ -33,6 +33,8 @@ WEEKLY_CHORES = {
 NUMBER_PEOPLE = len(ALL_PEOPLE)
 
 CHORE_TXT = '/home/pi/Documents/home_chores_project/raspberry-pi-home-project/day_log.txt'
+
+
 def read_and_update_day_counter():
     global DAY_COUNTER, WEEKLY_COUNTER
     # load in data and check how many days ago the last one was and divide by 4
@@ -51,21 +53,22 @@ def read_and_update_day_counter():
     for i in range(0, 7):
         if week_counter % 7 == 0:
             WEEKLY_COUNTER += 1
-        day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
+        day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
+                ] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
         day_counter += 1
         week_counter += 1
-        
+
     # re-save the file
     with open(CHORE_TXT, 'w') as outfile:
         json.dump(day_log, outfile)
-    
+
     return DAY_COUNTER, day_log[today.strftime('%d %b %Y')][1]
 
 
 def get_current_week_range():
     with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
-    
+
     current_day = list(day_log.keys())[0]
     current_week_counter = day_log[current_day][1]
     last_day = ''
@@ -75,7 +78,7 @@ def get_current_week_range():
             last_day = wkey
             break
     return current_day, last_day
-    
+
 
 def get_chores():
     global DAY_COUNTER, WEEKLY_COUNTER
@@ -86,15 +89,16 @@ def get_chores():
 
     daily_chores = {i: [] for i in ALL_PEOPLE}
     for dkey in DAILY_CHORES.keys():
-        chore_message += dkey + ": " +  DAILY_CHORES[dkey][DAY_COUNTER] + '  '
+        chore_message += dkey + ": " + DAILY_CHORES[dkey][DAY_COUNTER] + '  '
         daily_chores[DAILY_CHORES[dkey][DAY_COUNTER]].append(dkey)
 
     current_day, last_day = get_current_week_range()
     weekly_chores = {i: [] for i in ALL_PEOPLE}
     chore_message += 'Weekly Chores up to %s ' % (str(last_day))
     for wkey in WEEKLY_CHORES.keys():
-        chore_message += wkey + ": " + WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4] + '  '
+        chore_message += wkey + ": " + \
+            WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4] + '  '
         weekly_chores[WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4]].append(wkey)
-    all_chores = {'daily':daily_chores, 'weekly':weekly_chores}        
+    all_chores = {'daily': daily_chores, 'weekly': weekly_chores}
 
     return chore_message, all_chores
