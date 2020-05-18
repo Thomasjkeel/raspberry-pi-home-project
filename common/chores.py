@@ -79,7 +79,7 @@ def get_chores():
     global DAY_COUNTER, WEEKLY_COUNTER
     print('these are the chores...')
     DAY_COUNTER, WEEKLY_COUNTER = read_and_update_day_counter()
-    today = datetime.datetime.now().strftime('%d %b %Y')
+    today = datetime.datetime.now().strftime('%d %b')
     chore_message = 'Daily Chores  %s: ' % (today)
     for dkey in DAILY_CHORES.keys():
         chore_message += dkey + ":" +  DAILY_CHORES[dkey][DAY_COUNTER] + '  '
