@@ -15,8 +15,8 @@ ALL_PEOPLE = numpy.array(['T', 'J', 'M', 'F'])
 DAY_COUNTER = 0
 WEEKLY_COUNTER = 0
 DAILY_CHORES = {
-    "Walkies": ALL_PEOPLE,
-    "Dishwasher": ALL_PEOPLE[[1, 2, 3, 0]],
+    "Walks": ALL_PEOPLE,
+    "Dishes": ALL_PEOPLE[[1, 2, 3, 0]],
     "Lunch": ALL_PEOPLE[[2, 3, 0, 1]],
     "Dinner": ALL_PEOPLE[[3, 0, 1, 2]],
     "Watering": ALL_PEOPLE[[0, 1, 2, 3]],
