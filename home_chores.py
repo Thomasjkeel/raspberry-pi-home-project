@@ -84,8 +84,8 @@ def watch_pi():
                         sense.show_message(
                             fact, back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'right':
-                        print('toggling emails... setting to: %s ' %
-                              (not SEND_EMAILS))
+                        sense.show_message('toggling emails... setting to: %s ' %
+                              (not SEND_EMAILS), back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED )
                         SEND_EMAILS = not SEND_EMAILS
                     elif event.direction == 'middle':
                         print('dancing baby...')
