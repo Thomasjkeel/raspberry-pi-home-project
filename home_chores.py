@@ -5,6 +5,7 @@ import smtplib
 from common import emailer, chores, collect_facts
 import threading
 import subprocess
+import random
 
 # instatiate and clear the Sense Hat
 sense = SenseHat()
@@ -44,7 +45,7 @@ LAST = 's'
 
 def watch_pi():
     while True:
-        global CURRENT, LAST
+        global CURRENT, LAST, SEND_EMAILS
         for event in sense.stick.get_events():
             CURRENT = event.direction
             print(event.direction, event.action)
@@ -63,38 +64,39 @@ def watch_pi():
                         print('getting date...')
                         get_date(sense)
                     elif event.direction == 'right':
-                        print('getting facts...')
-                        fact = collect_facts.collect_facts()
-                        sense.show_message(
-                            fact, back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
+                        pass
                     elif event.direction == 'middle':
-                        print('dancing baby...')
-                        dance_baby(sense)
+                        print('getting random event...')
+                        pass
                     else:
                         pass
                 else:
                     ## double clicks ##
                     if event.direction == 'up':
-                        print('powering off...')
+                        sense.show_message('powering off...', text_colour=r, scroll_speed=SCROLL_SPEED)
                         time.sleep(10)
                         subprocess.Popen(['shutdown', '-h', 'now'])
                     elif event.direction == 'down':
                         pass
                     elif event.direction == 'left':
-                        pass
+                        print('getting facts...')
+                        fact = collect_facts.collect_facts()
+                        sense.show_message(
+                            fact, back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'right':
                         print('toggling emails... setting to: %s ' %
                               (not SEND_EMAILS))
                         SEND_EMAILS = not SEND_EMAILS
                     elif event.direction == 'middle':
-                        print('getting random event...')
-                        pass
+                        print('dancing baby...')
+                        dance_baby(sense)
                     else:
                         pass
                 LAST = event.direction
 
 
 def distribute_emails():
+    global SEND_EMAILS
     while True:
         if SEND_EMAILS:
             current_time = time.localtime()
