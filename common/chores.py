@@ -62,7 +62,6 @@ def read_and_update_day_counter():
 
 def get_chores():
     global DAY_COUNTER, WEEKLY_COUNTER
-    # sense.show_message("Temperature: %s .C  Humidity: %s percent  Pressure: %s mb" % (temp, humidity, pressure))
     print('these are the chores...')
     DAY_COUNTER, WEEKLY_COUNTER = read_and_update_day_counter()
     today = datetime.datetime.now().strftime('%d %b %Y')

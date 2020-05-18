@@ -8,6 +8,7 @@ import subprocess
 # instatiate and clear the Sense Hat
 sense = SenseHat()
 sense.clear()
+sense.low_light = True
 
 sender = emailer.Emailer()
 
@@ -18,6 +19,7 @@ EMAIL_TIME_HOUR = 8
 EMAIL_TIME_MINUTE = 1
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
+SCROLL_SPEED = (0.1)
 
 # sendTo = 'thomasjames.keel@gmail.com'
 # emailSubject = "Hello Tom"
@@ -41,14 +43,14 @@ def watch_pi():
                     elif event.direction == 'down':
                         print('getting chores...')
                         chore_message = chores.get_chores()
-                        sense.show_message(chore_message)
+                        sense.show_message(chore_message, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'left':
                         print('getting date...')
                         get_date(sense)
                     elif event.direction == 'right':
                         print('getting facts...')
                         fact = collect_facts.collect_facts()
-                        sense.show_message(fact)
+                        sense.show_message(fact, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'middle':
                         print('dancing baby...')
                         dance_baby(sense)
@@ -97,13 +99,13 @@ def get_weather(sense):
     humidity = round(humidity, 1)
     pressure = sense.get_pressure()
     pressure = round(pressure, 1)
-    sense.show_message("Temperature: %s .C  Humidity: %s percent  Pressure: %s mb" % (temp, humidity, pressure))
+    sense.show_message("Temperature: %s.C  Humidity: %s%%  Pressure: %s mb" % (temp, humidity, pressure), scroll_speed=SCROLL_SPEED)
     return
 
 
 def get_date(sense):
     local_time = time.ctime(time.time())
-    sense.show_message("Date: %s " % (local_time))
+    sense.show_message("Date: %s " % (local_time), scroll_speed=SCROLL_SPEED)
     return
 
 def dance_baby(sense):
