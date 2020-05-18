@@ -14,10 +14,10 @@ sense = SenseHat()
 sense.clear()
 sense.low_light = True
 sense.set_rotation(180)
-EMAIL_ADRESSES_TXT = '/home/pi/Documents/home_chores_project/raspberry-pi-home-project/email_addresses.txt'
+EMAIL_ADRESSES_TXT = '/home/pi/Documents/home_chores_project/email_addresses.txt'
 
-EMAIL_ADDRESSES = {'Tom': 'thomasjames.keel@gmail.com', 'Freya': 'freyasienna.k@gmail.com',
-                   'Mum': 'amandajane.keel@gmail.com', 'Jonathon': 'jonpage90@hotmail.com'}
+with open(EMAIL_ADRESSES_TXT) as json_file:
+    EMAIL_ADDRESSES = json.load(json_file)
 
 EMAIL_TIME_HOUR = 8
 EMAIL_TIME_MINUTE = 30
