@@ -20,7 +20,7 @@ EMAIL_TIME_HOUR = 8
 EMAIL_TIME_MINUTE = 1
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
-SCROLL_SPEED = (0.1)
+SCROLL_SPEED = (0.2)
 
 # sendTo = 'thomasjames.keel@gmail.com'
 # emailSubject = "Hello Tom"
