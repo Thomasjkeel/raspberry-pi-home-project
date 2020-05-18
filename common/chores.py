@@ -7,7 +7,6 @@ import time
 import numpy
 import json
 
-# {'6':'Sunday','0':'Monday'}
 
 datetime.datetime.now().weekday
 
@@ -74,7 +73,6 @@ def get_current_week_range():
     last_day = ''
     for wkey in day_log.keys():
         if day_log[wkey][1] > current_week_counter:
-            print(wkey)
             last_day = wkey
             break
     return current_day, last_day
@@ -82,7 +80,6 @@ def get_current_week_range():
 
 def get_chores():
     global DAY_COUNTER, WEEKLY_COUNTER
-    print('these are the chores...')
     DAY_COUNTER, WEEKLY_COUNTER = read_and_update_day_counter()
     today = datetime.datetime.now().strftime('%d %b')
     chore_message = 'Daily Chores  %s: ' % (today)
