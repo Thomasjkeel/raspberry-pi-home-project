@@ -35,9 +35,10 @@ b = (0, 100, 255)
 y = (255, 255, 0)
 g = (0, 255, 0)
 n = (0, 0, 0)
+t = (255, 50, 0)
 
 BACK_COLOUR = n
-TEXT_COLOUR = b
+TEXT_COLOUR = t
 CURRENT = ''
 LAST = 's'
 
