@@ -60,16 +60,32 @@ def read_and_update_day_counter():
     
     return DAY_COUNTER, day_log[today.strftime('%d %b %Y')][1]
 
+
+def get_current_week_range():
+    with open('day_log.txt') as json_file:
+        day_log = json.load(json_file)
+    
+    current_day = list(day_log.keys())[0]
+    current_week_counter = day_log[current_day][1]
+    for wkey in day_log.keys():
+        if day_log[wkey][1] > current_week_counter:
+            last_day = wkey
+            break
+    return current_day, last_day
+    
+
 def get_chores():
     global DAY_COUNTER, WEEKLY_COUNTER
     print('these are the chores...')
     DAY_COUNTER, WEEKLY_COUNTER = read_and_update_day_counter()
     today = datetime.datetime.now().strftime('%d %b %Y')
-    chore_message = 'Chores on  %s: ' % (today)
+    chore_message = 'Daily Chores  %s: ' % (today)
     for dkey in DAILY_CHORES.keys():
-        chore_message += dkey + ":" +  DAILY_CHORES[dkey][DAY_COUNTER] + '   '
+        chore_message += dkey + ":" +  DAILY_CHORES[dkey][DAY_COUNTER] + '  '
 
+    current_day, last_day = get_current_week_range()
+    chore_message += 'Weekly Chores for %s – %s' % (current_day, last_day)
     for wkey in WEEKLY_CHORES.keys():
-        chore_message += wkey + ":" + WEEKLY_CHORES[wkey][WEEKLY_COUNTER] + '   '
+        chore_message += wkey + ":" + WEEKLY_CHORES[wkey][WEEKLY_COUNTER] + '  '
 
     return chore_message
