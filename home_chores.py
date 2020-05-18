@@ -14,10 +14,8 @@ sender = emailer.Emailer()
 EMAIL_ADDRESSES = {'Tom':'thomasjames.keel@gmail.com', 'Freya':'freyasienna.k@gmail.com',\
                     'Mum':'amandajane.keel@gmail.com', 'Jonathon': 'jonpage90@hotmail.com'}
 
-EMAIL_TIME_HOUR = 9
-EMAIL_TIME_MINUTE = 30
-CURRENT = ''
-LAST = '_'
+EMAIL_TIME_HOUR = 8
+EMAIL_TIME_MINUTE = 1
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 
@@ -30,18 +28,20 @@ EMAIL_SENT_TODAY = False
 
 def watch_pi():
     while True:
+        CURRENT = ''
+        LAST = '_'
         for event in sense.stick.get_events():
             CURRENT = event.direction
+            print(event.direction, event.action)
             if event.action == 'pressed':
                 if CURRENT != LAST:
                     if event.direction == 'up':
                         print('getting weather...')
                         get_weather(sense)
-                        break
                     elif event.direction == 'down':
                         print('getting chores...')
-                        chores.get_chores(sense)
-                        pass
+                        chore_message = chores.get_chores()
+                        sense.show_message(chore_message)
                     elif event.direction == 'left':
                         print('getting date...')
                         get_date(sense)
@@ -49,11 +49,9 @@ def watch_pi():
                         print('getting facts...')
                         fact = collect_facts.collect_facts()
                         sense.show_message(fact)
-                        pass
                     elif event.direction == 'middle':
                         print('dancing baby...')
                         dance_baby(sense)
-                        pass
                     else:
                         pass
                 else:
@@ -75,7 +73,6 @@ def watch_pi():
                     else:
                         pass
             LAST = event.direction
-            print(event.direction, event.action)
 
 
 def distribute_emails():
@@ -87,6 +84,7 @@ def distribute_emails():
                 EMAIL_SENT_TODAY = True
             elif current_time.tm_hour == 1 and current_time.tm_min == 0:
                 EMAIL_SENT_TODAY = False
+                # DAY_COUNTER =+ 1 ??
             print('sending email!')
             time.sleep(30)
             pass
