@@ -20,7 +20,7 @@ with open(EMAIL_ADRESSES_TXT) as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
 
 EMAIL_TIME_HOUR = 17
-EMAIL_TIME_MINUTE = 4
+EMAIL_TIME_MINUTE = 13
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
@@ -114,8 +114,10 @@ def distribute_emails():
     global SEND_EMAILS, EMAIL_SENT_TODAY
     while True:
         if SEND_EMAILS:
+            print('sending?')
             current_time = time.localtime()
             if current_time.tm_hour == EMAIL_TIME_HOUR and current_time.tm_min == EMAIL_TIME_MINUTE and not EMAIL_SENT_TODAY:
+                print('actually sending')
                 sense.show_message('sending emails',  back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                 sender = emailer.Emailer()
                 for name, email_add in EMAIL_ADDRESSES.items():
