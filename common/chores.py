@@ -32,10 +32,11 @@ WEEKLY_CHORES = {
 }
 NUMBER_PEOPLE = len(ALL_PEOPLE)
 
+CHORE_TXT = './day_log.txt'
 def read_and_update_day_counter():
     global DAY_COUNTER, WEEKLY_COUNTER
     # load in data and check how many days ago the last one was and divide by 4
-    with open('day_log.txt') as json_file:
+    with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
     # read last day and counter value
     last_day, current_counters = day_log.popitem()
@@ -55,14 +56,14 @@ def read_and_update_day_counter():
         week_counter += 1
         
     # re-save the file
-    with open('day_log.txt', 'w') as outfile:
+    with open(CHORE_TXT, 'w') as outfile:
         json.dump(day_log, outfile)
     
     return DAY_COUNTER, day_log[today.strftime('%d %b %Y')][1]
 
 
 def get_current_week_range():
-    with open('day_log.txt') as json_file:
+    with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
     
     current_day = list(day_log.keys())[0]
