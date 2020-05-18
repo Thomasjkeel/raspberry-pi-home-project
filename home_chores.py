@@ -13,8 +13,6 @@ sense.clear()
 sense.low_light = True
 sense.set_rotation(180)
 
-sender = emailer.Emailer()
-
 EMAIL_ADDRESSES = {'Tom': 'thomasjames.keel@gmail.com', 'Freya': 'freyasienna.k@gmail.com',
                    'Mum': 'amandajane.keel@gmail.com', 'Jonathon': 'jonpage90@hotmail.com'}
 
@@ -25,12 +23,7 @@ EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
 
 RANDOM_EVENTS = ['Board Game', 'Book Club', 'Garden Time', 'Movie Time', 'You Decide', 'Craft Club', 'Party Game']
-# sendTo = 'thomasjames.keel@gmail.com'
-# emailSubject = "Hello Tom"
-# emailContent = "This is a test and you smell great goodbye!"
 
-# # sender.sendmail(sendTo, emailSubject, emailContent)
-# print('sent!')
 
 r = (255, 0, 0)
 b = (0, 100, 255)
@@ -99,7 +92,13 @@ def watch_pi():
                         pass
                     LAST = 'a'
                 
-                
+
+def make_email(sender, name, email_add, current_date):
+    emailSubject = "Chores for %s" % (current_date)
+    emailContent = "Hello %s This is a test!" % (name)
+    sender.sendmail(email_add, emailSubject, emailContent)
+    print(name, 'sent!')
+    return
 
 
 def distribute_emails():
@@ -108,12 +107,14 @@ def distribute_emails():
         if SEND_EMAILS:
             current_time = time.localtime()
             if current_time.tm_hour == EMAIL_TIME_HOUR and current_time.tm_min == EMAIL_TIME_MINUTE and not EMAIL_SENT_TODAY:
-                print('the time')
+                print('sending emails')
+                sender = emailer.Emailer()
+                for name, email_add in EMAIL_ADDRESSES.items():
+                    current_date = datetime.datetime.now().strftime('%d %b')
+                    make_email(sender, name, email_add, current_date)
                 EMAIL_SENT_TODAY = True
             elif current_time.tm_hour == 1 and current_time.tm_min == 0:
                 EMAIL_SENT_TODAY = False
-                # DAY_COUNTER =+ 1 ??
-            print('sending email!')
             time.sleep(30)
             pass
 
