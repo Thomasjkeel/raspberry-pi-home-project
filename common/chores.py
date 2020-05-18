@@ -91,7 +91,7 @@ def get_chores():
 
     current_day, last_day = get_current_week_range()
     weekly_chores = {i: [] for i in ALL_PEOPLE}
-    chore_message += 'Weekly Chores up to %s ' % (last_day)
+    chore_message += 'Weekly Chores up to %s ' % (str(last_day))
     for wkey in WEEKLY_CHORES.keys():
         chore_message += wkey + ": " + WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4] + '  '
         weekly_chores[WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4]].append(wkey)

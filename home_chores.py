@@ -20,7 +20,7 @@ with open(EMAIL_ADRESSES_TXT) as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
 
 EMAIL_TIME_HOUR = 17
-EMAIL_TIME_MINUTE = 0
+EMAIL_TIME_MINUTE = 4
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
@@ -98,11 +98,13 @@ def watch_pi():
                 
 
 def make_email(sender, name, email_add, current_date):
-    _, all_chores = chores.get_chores()    
+    _, all_chores = chores.get_chores()  
+    daily_chores = '<li> , '.join(['%s </li>']*len(all_chores['daily'][name[0]]))
+    weekly_chores = '<li> , '.join(['%s </li>']*len(all_chores['weekly'][name[0]]))
     emailSubject = "Chores for %s" % (current_date)
     _, week_ending = chores.get_current_week_range()
-    emailContent = "Hello %s! \n Your Daily Chores for today are: %s. \n Chores which will \
-        need to be completed by %s are: %s. \n Raspberry Pi out." % (name, all_chores['daily'][name[0]], str(week_ending), all_chores['weekly'][name[0]])
+    emailContent = "Hello %s! <br><br> Your Daily Chores for today are: <br> <ul> %s </ul>. <br><br> Chores which will \
+        need to be completed by %s are: <br> <ul> %s </ul> <br><br> Raspberry Pi out." % (name, daily_chores, str(week_ending), weekly_chores)
     sender.sendmail('thomasjames.keel@googlemail.com', emailSubject, emailContent)
     print(name, 'sent!')
     return
