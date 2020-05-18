@@ -17,8 +17,8 @@ sense.set_rotation(180)
 EMAIL_ADDRESSES = {'Tom': 'thomasjames.keel@gmail.com', 'Freya': 'freyasienna.k@gmail.com',
                    'Mum': 'amandajane.keel@gmail.com', 'Jonathon': 'jonpage90@hotmail.com'}
 
-EMAIL_TIME_HOUR = 8
-EMAIL_TIME_MINUTE = 1
+EMAIL_TIME_HOUR = 16
+EMAIL_TIME_MINUTE = 22
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
