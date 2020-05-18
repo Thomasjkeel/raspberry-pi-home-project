@@ -19,8 +19,8 @@ EMAIL_ADRESSES_TXT = '/home/pi/Documents/home_chores_project/email_addresses.txt
 with open(EMAIL_ADRESSES_TXT) as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
 
-EMAIL_TIME_HOUR = 16
-EMAIL_TIME_MINUTE = 45
+EMAIL_TIME_HOUR = 17
+EMAIL_TIME_MINUTE = 0
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
