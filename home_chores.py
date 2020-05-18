@@ -33,7 +33,7 @@ b = (0, 100, 255)
 y = (255, 255, 0)
 g = (0, 255, 0)
 
-BACK_COLOUR = y
+BACK_COLOUR = None
 TEXT_COLOUR = r
 
 
