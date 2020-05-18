@@ -9,11 +9,17 @@
 """
 
 import smtplib
+import json
+
+GMAIL_DETAILS_TXT = '/home/pi/Documents/home_chores_project/email_details.txt'
+
+with open(GMAIL_DETAILS_TXT) as json_file:
+    GMAIL_DETAILS = json.load(json_file)
 
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 587
-GMAIL_USERNAME = 'raspberrypiebronllys@gmail.com'
-GMAIL_PASSWORD = 'BlueberryPi'
+GMAIL_USERNAME = GMAIL_DETAILS['username']
+GMAIL_PASSWORD = GMAIL_DETAILS['password']
 
 class Emailer:
     def sendmail(self, recipient, subject, content):
