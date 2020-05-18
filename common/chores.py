@@ -67,6 +67,7 @@ def get_current_week_range():
     
     current_day = list(day_log.keys())[0]
     current_week_counter = day_log[current_day][1]
+    last_day = ''
     for wkey in day_log.keys():
         if day_log[wkey][1] > current_week_counter:
             last_day = wkey
