@@ -118,8 +118,8 @@ def distribute_emails():
                 sender = emailer.Emailer()
                 for name, email_add in EMAIL_ADDRESSES.items():
                     print(name, email_add)
-                    current_date = datetime.datetime.now().strftime('%d %b')
-                    make_email(sender, name, email_add, current_date)
+                current_date = datetime.datetime.now().strftime('%d %b')
+                make_email(sender, name, email_add, current_date)
                 EMAIL_SENT_TODAY = True
             elif current_time.tm_hour == 1 and current_time.tm_min == 0:
                 EMAIL_SENT_TODAY = False
