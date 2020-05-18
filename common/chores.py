@@ -32,7 +32,7 @@ WEEKLY_CHORES = {
 }
 NUMBER_PEOPLE = len(ALL_PEOPLE)
 
-CHORE_TXT = './day_log.txt'
+CHORE_TXT = '../day_log.txt'
 def read_and_update_day_counter():
     global DAY_COUNTER, WEEKLY_COUNTER
     # load in data and check how many days ago the last one was and divide by 4
