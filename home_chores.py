@@ -145,7 +145,7 @@ def dance_baby(sense):
 
 def end_program():
     time.sleep(36)
-    os._exit()
+    os._exit(1)
 
 
 if __name__ == "__main__":
