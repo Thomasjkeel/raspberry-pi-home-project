@@ -69,7 +69,7 @@ def watch_pi():
                                            text_colour=TEXT_COLOUR, scroll_speed=(0.03))
                     elif event.direction == 'middle':
                         print('getting random event...')
-                        rand_event = RANDOM_EVENTS[random.randint(1, len(RANDOM_EVENTS))]
+                        rand_event = RANDOM_EVENTS[random.randint(0, len(RANDOM_EVENTS)-1)]
                         sense.show_message('Random event is: %s' % (rand_event), back_colour=BACK_COLOUR,
                                            text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     else:
