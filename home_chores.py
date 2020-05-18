@@ -6,6 +6,7 @@ from common import emailer, chores, collect_facts
 import threading
 import subprocess
 import random
+import json
 import os
 
 # instatiate and clear the Sense Hat
@@ -13,6 +14,7 @@ sense = SenseHat()
 sense.clear()
 sense.low_light = True
 sense.set_rotation(180)
+EMAIL_ADRESSES_TXT = '/home/pi/Documents/home_chores_project/raspberry-pi-home-project/email_addresses.txt'
 
 EMAIL_ADDRESSES = {'Tom': 'thomasjames.keel@gmail.com', 'Freya': 'freyasienna.k@gmail.com',
                    'Mum': 'amandajane.keel@gmail.com', 'Jonathon': 'jonpage90@hotmail.com'}
