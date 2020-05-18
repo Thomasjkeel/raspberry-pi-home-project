@@ -67,8 +67,8 @@ def get_chores():
     today = datetime.datetime.now().strftime('%d %b %Y')
     chore_message = 'Chores on  %s: ' % (today)
     for dkey in DAILY_CHORES.keys():
-        print(dkey)
-        print(DAILY_CHORES[dkey] + ":" +  DAILY_CHORES[dkey][DAY_COUNTER] + '   ')
+        print(DAILY_CHORES[dkey])
+        print(DAILY_CHORES[dkey][DAY_COUNTER])
         chore_message.join(DAILY_CHORES[dkey] + ":" +  DAILY_CHORES[dkey][DAY_COUNTER] + '   ')
 
     for wkey in WEEKLY_CHORES.keys():
