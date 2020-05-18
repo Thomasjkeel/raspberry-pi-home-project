@@ -8,8 +8,6 @@ import numpy
 import json
 
 
-datetime.datetime.now().weekday
-
 ALL_PEOPLE = numpy.array(['T', 'J', 'M', 'F'])
 DAY_COUNTER = 0
 WEEKLY_COUNTER = 0
