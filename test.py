@@ -18,5 +18,5 @@ show_message_background("my name is Dave")
 
 while True:
     print("sleeping...")
-    message_shower('A')
-    time.sleep(1)
+    sense.show_message('A')
+    time.sleep(10)
