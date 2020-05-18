@@ -75,6 +75,7 @@ def watch_pi():
                     else:
                         pass
                 else:
+                    LAST = 's'
                     ## double clicks ##
                     if event.direction == 'up':
                         sense.show_message('powering off...', text_colour=r, scroll_speed=SCROLL_SPEED)
@@ -96,7 +97,7 @@ def watch_pi():
                         dance_baby(sense)
                     else:
                         pass
-                    LAST = 's'
+                    
                 LAST = event.direction
 
 
