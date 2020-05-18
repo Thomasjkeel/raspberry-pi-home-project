@@ -15,7 +15,7 @@ ALL_PEOPLE = numpy.array(['T', 'J', 'M', 'F'])
 DAY_COUNTER = 0
 WEEKLY_COUNTER = 0
 DAILY_CHORES = {
-    "Walks": ALL_PEOPLE,
+    "Walkies": ALL_PEOPLE,
     "Dishes": ALL_PEOPLE[[1, 2, 3, 0]],
     "Lunch": ALL_PEOPLE[[2, 3, 0, 1]],
     "Dinner": ALL_PEOPLE[[3, 0, 1, 2]],
@@ -86,7 +86,7 @@ def get_chores():
         chore_message += dkey + ": " +  DAILY_CHORES[dkey][DAY_COUNTER] + '  '
 
     current_day, last_day = get_current_week_range()
-    chore_message += 'Weekly Chores for %s to %s ' % (today, last_day)
+    chore_message += 'Weekly Chores up to %s ' % (last_day)
     for wkey in WEEKLY_CHORES.keys():
         chore_message += wkey + ": " + WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4] + '  '
 

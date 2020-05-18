@@ -82,7 +82,7 @@ def watch_pi():
                         time.sleep(10)
                         subprocess.Popen(['shutdown', '-h', 'now'])
                     elif event.direction == 'down':
-                        pass
+                        sense.show_message('For chores press down', back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'left':
                         print('getting facts...')
                         fact = collect_facts.collect_facts()
