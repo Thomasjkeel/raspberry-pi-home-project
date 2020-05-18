@@ -14,9 +14,9 @@ def show_message_background(message):
     th.Thread(target=message_shower, args=(message,)).start()
 
 
-show_message_background("my name is Dave")
-
 while True:
     print("sleeping...")
-    sense.show_message('A')
-    time.sleep(10)
+    show_message_background("my name is Dave")
+    time.sleep(5)
+    sense.clear()
+    
