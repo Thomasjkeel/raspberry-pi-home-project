@@ -22,7 +22,7 @@ EMAIL_TIME_HOUR = 8
 EMAIL_TIME_MINUTE = 1
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
-SCROLL_SPEED = (0.08)
+SCROLL_SPEED = (0.06)
 
 RANDOM_EVENTS = ['Board Game', 'Book Club', 'Garden Time', 'Movie Time', 'You Decide', 'Craft Club', 'Party Game']
 # sendTo = 'thomasjames.keel@gmail.com'
