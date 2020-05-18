@@ -70,6 +70,7 @@ def get_current_week_range():
     last_day = ''
     for wkey in day_log.keys():
         if day_log[wkey][1] > current_week_counter:
+            print(wkey)
             last_day = wkey
             break
     return current_day, last_day
@@ -85,7 +86,7 @@ def get_chores():
         chore_message += dkey + ": " +  DAILY_CHORES[dkey][DAY_COUNTER] + '  '
 
     current_day, last_day = get_current_week_range()
-    chore_message += 'Weekly Chores for ' + today + 'to ' + last_day
+    chore_message += 'Weekly Chores for %s to %s ' % (today, last_day)
     for wkey in WEEKLY_CHORES.keys():
         chore_message += wkey + ": " + WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4] + '  '
 
