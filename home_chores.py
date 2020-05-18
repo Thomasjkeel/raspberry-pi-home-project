@@ -22,7 +22,7 @@
     Notes:
     ====================
     Email addresses will need to be stored in a seperate file within the Raspberry Pi's filesystem.
-    Can be run using a crontab job e.g. @reboot python <PATH TO FILE>/home_chores.py
+    Can be run using a crontab job e.g. @reboot python <PATH TO FILE>/home_chores.py &
 
 """
 from sense_hat import SenseHat
