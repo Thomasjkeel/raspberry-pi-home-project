@@ -54,7 +54,7 @@ def watch_pi():
                         get_weather(sense)
                     elif event.direction == 'down':
                         print('getting chores...')
-                        chore_message = chores.get_chores()
+                        chore_message, _ = chores.get_chores()
                         sense.show_message(chore_message, back_colour=BACK_COLOUR,
                                            text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'left':
@@ -98,11 +98,11 @@ def watch_pi():
                 
 
 def make_email(sender, name, email_add, current_date):
-    
+    _, all_chores = chores.get_chores()    
     emailSubject = "Chores for %s" % (current_date)
     _, week_ending = chores.get_current_week_range()
     emailContent = "Hello %s! \n Your Daily Chores for today are: %s \n Chores which will \
-        need to be completed by %s are: %s. \n Raspberry Pi out." % (name, daily_chores, week_ending, weekly_chores)
+        need to be completed by %s are: %s. \n Raspberry Pi out." % (name, all_chores['daily'], week_ending, all_chores['weekly'])
     sender.sendmail('thomasjames.keel@googlemail.com', emailSubject, emailContent)
     print(name, 'sent!')
     return
@@ -111,7 +111,8 @@ def make_email(sender, name, email_add, current_date):
 def distribute_emails():
     global SEND_EMAILS, EMAIL_SENT_TODAY
     while True:
-        print(CHORE_TXT)
+        _, all_chores = chores.get_chores()
+        print(all_chores)
         if SEND_EMAILS:
             current_time = time.localtime()
             if current_time.tm_hour == EMAIL_TIME_HOUR and current_time.tm_min == EMAIL_TIME_MINUTE and not EMAIL_SENT_TODAY:

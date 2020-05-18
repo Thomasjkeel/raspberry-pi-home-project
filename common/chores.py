@@ -83,12 +83,18 @@ def get_chores():
     DAY_COUNTER, WEEKLY_COUNTER = read_and_update_day_counter()
     today = datetime.datetime.now().strftime('%d %b')
     chore_message = 'Daily Chores  %s: ' % (today)
+
+    daily_chores = {i: [] for i in ALL_PEOPLE}
     for dkey in DAILY_CHORES.keys():
         chore_message += dkey + ": " +  DAILY_CHORES[dkey][DAY_COUNTER] + '  '
+        daily_chores[DAILY_CHORES[dkey][DAY_COUNTER]].append(dkey)
 
     current_day, last_day = get_current_week_range()
+    weekly_chores = {i: [] for i in ALL_PEOPLE}
     chore_message += 'Weekly Chores up to %s ' % (last_day)
     for wkey in WEEKLY_CHORES.keys():
         chore_message += wkey + ": " + WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4] + '  '
+        weekly_chores[WEEKLY_CHORES[wkey][WEEKLY_COUNTER % 4]].append(wkey)
+    all_chores = {'daily':daily_chores, 'weekly':weekly_chores}        
 
-    return chore_message
+    return chore_message, all_chores
