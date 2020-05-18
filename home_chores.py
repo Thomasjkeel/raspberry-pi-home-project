@@ -38,12 +38,12 @@ n = (0, 0, 0)
 
 BACK_COLOUR = n
 TEXT_COLOUR = b
-
+CURRENT = ''
+LAST = 's'
 
 def watch_pi():
     while True:
-        CURRENT = ''
-        LAST = '_'
+        global CURRENT, LAST
         for event in sense.stick.get_events():
             CURRENT = event.direction
             print(event.direction, event.action)
