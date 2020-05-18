@@ -102,7 +102,7 @@ def make_email(sender, name, email_add, current_date):
     emailSubject = "Chores for %s" % (current_date)
     _, week_ending = chores.get_current_week_range()
     emailContent = "Hello %s! \n Your Daily Chores for today are: %s. \n Chores which will \
-        need to be completed by %s are: %s. \n Raspberry Pi out." % (name, all_chores['daily'][name[0]], week_ending, all_chores['weekly'][name[0]])
+        need to be completed by %s are: %s. \n Raspberry Pi out." % (name, all_chores['daily'][name[0]], str(week_ending), all_chores['weekly'][name[0]])
     sender.sendmail('thomasjames.keel@googlemail.com', emailSubject, emailContent)
     print(name, 'sent!')
     return
