@@ -74,7 +74,8 @@ def watch_pi():
                     if event.direction == 'up':
                         sense.show_message('powering off...', text_colour=r, scroll_speed=SCROLL_SPEED)
                         time.sleep(10)
-                        subprocess.Popen(['sudo' 'shutdown', '-h', 'now'])
+                        os._exit(1)
+                        # subprocess.Popen(['sudo' 'shutdown', '-h', 'now'])
                     elif event.direction == 'down':
                         sense.show_message('For chores press down', back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'left':
@@ -143,20 +144,20 @@ def dance_baby(sense):
     return
 
 
-def end_program():
-    time.sleep(36)
-    os._exit(1)
+# def end_program():
+#     time.sleep(36)
+#     os._exit(1)
 
 
 if __name__ == "__main__":
     t1 = threading.Thread(target=watch_pi)
     t2 = threading.Thread(target=distribute_emails)
-    t3 = threading.Thread(target=end_program)
+    # t3 = threading.Thread(target=end_program)
     t1.setDaemon(True)
     t2.setDaemon(True)
-    t3.setDaemon(True)
+    # t3.setDaemon(True)
     t1.start()
     t2.start()
-    t3.start()
+    # t3.start()
     while True:
         pass
