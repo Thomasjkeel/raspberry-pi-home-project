@@ -110,8 +110,8 @@ def dance_baby(sense):
     return
 
 if __name__ == "__main__":
-    t1 = Thread(target = watch_pi)
-    t2 = Thread(target = distribute_emails)
+    t1 = threading.Thread(target = watch_pi)
+    t2 = threading.Thread(target=distribute_emails)
     t1.setDaemon(True)
     t2.setDaemon(True)
     t1.start()
