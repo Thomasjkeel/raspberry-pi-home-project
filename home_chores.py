@@ -6,6 +6,7 @@ from common import emailer, chores, collect_facts
 import threading
 import subprocess
 import random
+import os
 
 # instatiate and clear the Sense Hat
 sense = SenseHat()
@@ -142,12 +143,20 @@ def dance_baby(sense):
     return
 
 
+def end_program():
+    time.sleep(36)
+    os._exit()
+
+
 if __name__ == "__main__":
     t1 = threading.Thread(target=watch_pi)
     t2 = threading.Thread(target=distribute_emails)
+    t3 = threading.Thread(target=end_program)
     t1.setDaemon(True)
     t2.setDaemon(True)
+    t3.setDaemon(True)
     t1.start()
     t2.start()
+    t3.start()
     while True:
         pass
