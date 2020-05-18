@@ -21,7 +21,7 @@ EMAIL_TIME_HOUR = 8
 EMAIL_TIME_MINUTE = 1
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
-SCROLL_SPEED = (0.05)
+SCROLL_SPEED = (0.08)
 
 # sendTo = 'thomasjames.keel@gmail.com'
 # emailSubject = "Hello Tom"
@@ -37,7 +37,7 @@ g = (0, 255, 0)
 n = (0, 0, 0)
 
 BACK_COLOUR = n
-TEXT_COLOUR = r
+TEXT_COLOUR = b
 
 
 def watch_pi():
@@ -47,6 +47,7 @@ def watch_pi():
         for event in sense.stick.get_events():
             CURRENT = event.direction
             print(event.direction, event.action)
+            print(CURRENT, LAST)
             if event.action == 'pressed':
                 if CURRENT != LAST:
                     if event.direction == 'up':
