@@ -1,3 +1,29 @@
+"""
+    Main application file
+    =====================
+    run using a crontab job e.g. @reboot python <PATH TO FILE>/home_chores.py
+
+    Requirements
+    ====================
+    Raspberry Pi with 
+
+    Joystick Functionality
+    =====================
+    UP: List all chores on rota and current assignee
+    DOWN: Weather from SENSE HAT
+    DOWN*2: Stop program and exit 
+    LEFT: Show controls
+    LEFT*2: Toggle emails
+    RIGHT: Current date and time
+    RIGHT*2: Random fact from uselessfacts API
+    MIDDLE: Random event chooser
+    MIDDLE*2: LED light Dance 
+
+    Notes:
+    ====================
+    Email addresses will need to be stored in a seperate file within the Raspberry Pi's filesystem
+
+"""
 from sense_hat import SenseHat
 import time
 import datetime

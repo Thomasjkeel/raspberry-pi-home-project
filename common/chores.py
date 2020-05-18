@@ -1,5 +1,7 @@
 """
-    Functions for determining whose chores it is today 
+    Chores file
+    ================
+    Functions for determining whose chores it is today. Uses a seperate file (day_log.txt) to keep itself in sync with the rota. 
 """
 
 import datetime

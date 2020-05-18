@@ -1,3 +1,6 @@
+"""
+    Fires a simple HTTP API request to get one fact from the UselessFacts API
+"""
 import requests
 
 def collect_facts():
