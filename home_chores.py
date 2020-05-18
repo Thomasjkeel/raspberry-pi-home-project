@@ -131,7 +131,7 @@ def get_weather(sense):
 
 
 def get_date(sense):
-    local_time = datetime.datetime.now().strftime('%d %b %Y %H:%M')
+    local_time = datetime.datetime.now().strftime('%d %b %H:%M')
     sense.show_message("Date: %s " % (local_time), back_colour=BACK_COLOUR,
                        text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
     return
