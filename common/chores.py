@@ -27,8 +27,8 @@ WEEKLY_CHORES = {
     "Bathrooms": ALL_PEOPLE[(WEEKLY_COUNTER+2) % 4],
     "Kitchen": ALL_PEOPLE[(WEEKLY_COUNTER+3) % 4],
     "Bins": ALL_PEOPLE[WEEKLY_COUNTER % 4],
-    "Dusting": ALL_PEOPLE[(WEEKLY_COUNTER) % 4],
-    "Watering": ALL_PEOPLE[(WEEKLY_COUNTER) % 4]
+    "Dusting": ALL_PEOPLE[(WEEKLY_COUNTER+3) % 4],
+    "Watering": ALL_PEOPLE[WEEKLY_COUNTER % 4]
 }
 NUMBER_PEOPLE = len(ALL_PEOPLE)
 
