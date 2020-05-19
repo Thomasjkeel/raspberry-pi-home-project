@@ -50,7 +50,7 @@ sense.show_message('Hello')
 with open(EMAIL_ADRESSES_TXT, 'rb') as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
 
-EMAIL_TIME_HOUR = 9
+EMAIL_TIME_HOUR = 8
 EMAIL_TIME_MINUTE = 30
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
@@ -140,7 +140,7 @@ def make_email(sender, name, email_add, current_date):
     emailSubject = "Chores for %s" % (current_date)
     _, week_ending = chores.get_current_week_range()
     emailContent = "Hello %s! <br><br> Your Daily Chores for today are: <br> <ul> %s </ul> <br><br> Chores which will \
-        need to be completed by %s are: <br> <ul> %s </ul> <br><br> Raspberry Pi out." % (name, daily_chores, str(week_ending), weekly_chores)
+        need to be completed by the week ending:" % (name, daily_chores) + str(week_ending) + " are: <br> <ul> %s </ul> <br><br> Raspberry Pi out." % (weekly_chores)
     sender.sendmail(email_add, emailSubject, emailContent)
     print(name, 'sent!')
     return
