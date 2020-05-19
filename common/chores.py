@@ -48,8 +48,10 @@ def read_and_update_day_counter():
         min_date = ''
         max_date = ''
         for day in all_days:
+            print(day)
             difference = datetime.datetime.strptime(day, '%d %b %Y') - today
             days_away = difference.days
+            print(days_away)
             if days_away <= min_days_away:
                 min_date = day
             elif days_away >= max_days_away:
