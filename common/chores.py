@@ -53,6 +53,9 @@ def read_and_update_day_counter():
 
         # week counter (current week number)
         week_counter = earliest[1][1]
+        if week_counter == today.strftime('%d %b %Y'):
+            return current_day_index, day_log[today.strftime('%d %b %Y')][1]
+            
         date_counter_changes = False
         for val in ordered_data:
             if val[1][1] > week_counter:
