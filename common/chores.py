@@ -35,7 +35,7 @@ CHORE_TXT = '/home/pi/Documents/home_chores_project/raspberry-pi-home-project/da
 
 
 def read_and_update_day_counter():
-    global DAY_COUNTER, WEEKLY_COUNTER, SAVE_LOG_FILE
+    global DAY_COUNTER, WEEKLY_COUNTER
     # load in data and check how many days ago the last one was and divide by 4
     with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
@@ -58,14 +58,23 @@ def read_and_update_day_counter():
                 ] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
         day_counter += 1
         week_counter += 1
-
-    # re-save the file
-    if SAVE_LOG_FILE:
+    
+    if save_log_file_status():
         with open(CHORE_TXT, 'w') as outfile:
             json.dump(day_log, outfile)
-        SAVE_LOG_FILE = False
 
     return DAY_COUNTER, day_log[today.strftime('%d %b %Y')][1]
+
+def save_log_file_status():
+    with open('save_log.txt') as my_file:
+        save_day_log = my_file.read()
+    
+    if save_day_log == 'True':
+        with open('save_log.txt', 'w') as my_file:
+            my_file.write('False')
+        return True
+    else:
+        return False
 
 
 def get_current_week_range():
