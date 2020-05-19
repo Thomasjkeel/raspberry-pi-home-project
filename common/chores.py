@@ -39,29 +39,46 @@ def read_and_update_day_counter():
     # load in data and check how many days ago the last one was and divide by 4
     with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
-    # read last day and counter value
-    a_day = day_log.popitem()
-    latest_week_counter = numpy.array(list(day_log.values()))[:, 1].max()
-    # then how many days away:
-    today = datetime.datetime.now()
-    difference = today - datetime.datetime.strptime(a_day[0], '%d %b %Y')
-    # set WEEKLY_COUNTER
-    days_away = difference.days
-    counter_on_a_day = a_day[1][0]
-    day_counter = (days_away + counter_on_a_day)
-    week_counter = 0
-    WEEKLY_COUNTER = latest_week_counter
-    day_log = {}
-    DAY_COUNTER = day_counter % NUMBER_PEOPLE
-    for i in range(0, 7):
-        if week_counter % 7 == 0:
-            WEEKLY_COUNTER += 1
-        day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
-                ] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
-        day_counter += 1
-        week_counter += 1
-    
     if save_log_file_status():
+        # read last day and counter value
+        all_days = list(day_log.keys())
+        today = datetime.datetime.now()
+        # determine how many days away the nearest date is:
+        min_days_away = 999
+        max_days_away = 0
+        min_date = ''
+        max_date = ''
+        for day in all_days:
+            difference = today - datetime.datetime.strptime(day, '%d %b %Y')
+            days_away = difference.days
+            if days_away <= min_days_away:
+                min_date = day
+            elif days_away >= max_days_away:
+                max_date = day
+
+        print(min_date, max_date)
+
+        latest_week_counter = numpy.array(list(day_log.values()))[:, 1].max()
+        
+        difference = today - datetime.datetime.strptime(a_day[0], '%d %b %Y')
+        # set WEEKLY_COUNTER
+        days_away = difference.days
+        counter_on_a_day = day[1][0]
+        day_counter = (days_away + counter_on_a_day)
+        week_counter = 0
+    
+        WEEKLY_COUNTER = latest_week_counter
+        day_log = {}
+        DAY_COUNTER = day_counter % NUMBER_PEOPLE
+        for i in range(0, 7):
+            if week_counter % 7 == 0:
+                WEEKLY_COUNTER += 1
+            day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
+                    ] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
+            day_counter += 1
+            week_counter += 1
+    
+    
         with open(CHORE_TXT, 'w') as outfile:
             json.dump(day_log, outfile)
 
