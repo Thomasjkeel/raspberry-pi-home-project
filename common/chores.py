@@ -18,7 +18,7 @@ DAILY_CHORES = {
     "Dishes": ALL_PEOPLE[[1, 2, 3, 0]],
     "Lunch": ALL_PEOPLE[[2, 3, 0, 2, 3, 0]],
     "Dinner": ALL_PEOPLE[[3, 0, 1, 2]],
-    "Animals": ALL_PEOPLE[[1, 3, 0, 2]],
+    "Feed Animals": ALL_PEOPLE[[1, 3, 0, 2]],
     "Clean Room": ALL_PEOPLE[[2, 1, 3, 0]]
 }
 
@@ -45,9 +45,13 @@ def read_and_update_day_counter():
     # then how many days away:
     today = datetime.datetime.now()
     difference = today - datetime.datetime.strptime(last_day, '%d %b %Y')
+    # set WEEKLY_COUNTER
     days_away = difference.days
     day_counter = (days_away + current_counters[0])
-    week_counter = current_counters[1]
+    week_counter = 0
+    print('before', WEEKLY_COUNTER)
+    WEEKLY_COUNTER = current_counters[1]
+    print('after', WEEKLY_COUNTER)
     day_log = {}
     DAY_COUNTER = day_counter % NUMBER_PEOPLE
     for i in range(0, 7):
@@ -57,6 +61,7 @@ def read_and_update_day_counter():
                 ] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
         day_counter += 1
         week_counter += 1
+    print('last', WEEKLY_COUNTER)
 
     # re-save the file
     with open(CHORE_TXT, 'w') as outfile:
