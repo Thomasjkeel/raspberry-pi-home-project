@@ -16,7 +16,7 @@ WEEKLY_COUNTER = 0
 DAILY_CHORES = {
     "Walkies": ALL_PEOPLE,
     "Dishes": ALL_PEOPLE[[1, 2, 3, 0]],
-    "Lunch": ALL_PEOPLE[[2, 3, 0, 1]],
+    "Lunch": ALL_PEOPLE[[2, 3, 0, 2, 3, 0]],
     "Dinner": ALL_PEOPLE[[3, 0, 1, 2]],
     "Watering": ALL_PEOPLE[[0, 1, 2, 3]],
     "Animals": ALL_PEOPLE[[1, 3, 0, 2]],
