@@ -107,6 +107,7 @@ def get_chores():
     weekly_chores = {i: [] for i in ALL_PEOPLE}
     chore_message += 'Weekly Chores up to' + str(last_day)
     for wkey in WEEKLY_CHORES.keys():
+        print(wkey, current_week)
         chore_message += wkey + ": " + \
             WEEKLY_CHORES[wkey][current_week] + '  '
         weekly_chores[WEEKLY_CHORES[wkey][current_week]].append(wkey)
