@@ -10,7 +10,6 @@ import numpy
 import json
 
 ALL_PEOPLE = numpy.array(['T', 'J', 'M', 'F'])
-DAY_COUNTER = 0
 WEEKLY_COUNTER = 0
 DAILY_CHORES = {
     "Walkies": ALL_PEOPLE,
@@ -35,7 +34,6 @@ CHORE_TXT = '/home/pi/Documents/home_chores_project/raspberry-pi-home-project/da
 
 
 def read_and_update_day_counter():
-    global DAY_COUNTER, WEEKLY_COUNTER
     # load in data and check how many days ago the last one was and divide by 4
     with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
@@ -52,10 +50,10 @@ def read_and_update_day_counter():
         earliest_counter = earliest[1][0]
         # day counter (i.e current day number)
         day_counter = (days_away + earliest_counter)
-        DAY_COUNTER = day_counter % NUMBER_PEOPLE
+        current_day_index = day_counter % NUMBER_PEOPLE
 
         # week counter (current week number)
-        week_counter = earliest_counter[1][1]
+        week_counter = earliest[1][1]
         date_counter_changes = False
         for val in ordered_data:
             if val[1][1] > week_counter:
@@ -78,7 +76,7 @@ def read_and_update_day_counter():
         with open(CHORE_TXT, 'w') as outfile:
             json.dump(day_log, outfile)
 
-    return DAY_COUNTER, day_log[today.strftime('%d %b %Y')][1]
+    return current_day_index, day_log[today.strftime('%d %b %Y')][1]
 
 
 def get_current_week_range():
@@ -96,15 +94,14 @@ def get_current_week_range():
 
 
 def get_chores():
-    global DAY_COUNTER
-    DAY_COUNTER, current_week = read_and_update_day_counter()
+    current_day_index, current_week = read_and_update_day_counter()
     today = datetime.datetime.now().strftime('%d %b')
     chore_message = 'Daily Chores  %s: ' % (today)
 
     daily_chores = {i: [] for i in ALL_PEOPLE}
     for dkey in DAILY_CHORES.keys():
-        chore_message += dkey + ": " + DAILY_CHORES[dkey][DAY_COUNTER] + '  '
-        daily_chores[DAILY_CHORES[dkey][DAY_COUNTER]].append(dkey)
+        chore_message += dkey + ": " + DAILY_CHORES[dkey][current_day_index] + '  '
+        daily_chores[DAILY_CHORES[dkey][current_day_index]].append(dkey)
 
     _, last_day = get_current_week_range()
     weekly_chores = {i: [] for i in ALL_PEOPLE}
