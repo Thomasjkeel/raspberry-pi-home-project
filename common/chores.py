@@ -27,8 +27,8 @@ WEEKLY_CHORES = {
     "Bathrooms": ALL_PEOPLE[(WEEKLY_COUNTER+2) % 4],
     "Kitchen": ALL_PEOPLE[(WEEKLY_COUNTER+3) % 4],
     "Bins": ALL_PEOPLE[WEEKLY_COUNTER % 4],
-    "Dusting": ALL_PEOPLE[[2, 3, 0, 1]][(WEEKLY_COUNTER) % 4],
-    "Watering": ALL_PEOPLE[[3, 0, 1, 2]][(WEEKLY_COUNTER) % 4]
+    "Dusting": ALL_PEOPLE[(WEEKLY_COUNTER) % 4],
+    "Watering": ALL_PEOPLE[(WEEKLY_COUNTER) % 4]
 }
 NUMBER_PEOPLE = len(ALL_PEOPLE)
 
@@ -95,7 +95,7 @@ def get_chores():
         chore_message += dkey + ": " + DAILY_CHORES[dkey][DAY_COUNTER] + '  '
         daily_chores[DAILY_CHORES[dkey][DAY_COUNTER]].append(dkey)
 
-    current_day, last_day = get_current_week_range()
+    _, last_day = get_current_week_range()
     weekly_chores = {i: [] for i in ALL_PEOPLE}
     chore_message += 'Weekly Chores up to' + str(last_day)
     for wkey in WEEKLY_CHORES.keys():
