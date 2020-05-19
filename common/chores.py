@@ -51,7 +51,7 @@ def read_and_update_day_counter():
             print(day)
             difference = datetime.datetime.strptime(day, '%d %b %Y') - today
             days_away = int(difference.days)
-            print(days_away)
+            print(days_away, days_away <= min_days_away)
             if days_away <= min_days_away:
                 min_date = day
             elif days_away >= max_days_away:
