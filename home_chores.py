@@ -49,10 +49,9 @@ sense.show_message('Hello')
 
 with open(EMAIL_ADRESSES_TXT, 'rb') as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
-print(EMAIL_ADDRESSES)
 
 EMAIL_TIME_HOUR = 9
-EMAIL_TIME_MINUTE = 18
+EMAIL_TIME_MINUTE = 28
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
@@ -159,7 +158,7 @@ def distribute_emails():
                 for name in EMAIL_ADDRESSES.keys():
                     current_date = datetime.datetime.now().strftime('%d %b')
                     print(name, EMAIL_ADDRESSES[name])
-                    # make_email(sender, name, EMAIL_ADDRESSES[name], current_date)
+                    make_email(sender, name, EMAIL_ADDRESSES[name], current_date)
                 sense.show_message('all emails sent',  back_colour=BACK_COLOUR,
                                    text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                 EMAIL_SENT_TODAY = True
