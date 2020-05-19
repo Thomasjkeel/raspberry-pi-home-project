@@ -10,7 +10,6 @@ import numpy
 import json
 
 ALL_PEOPLE = numpy.array(['T', 'J', 'M', 'F'])
-WEEKLY_COUNTER = 0
 DAILY_CHORES = {
     "Walkies": ALL_PEOPLE,
     "Dishes": ALL_PEOPLE[[1, 2, 3, 0]],
@@ -21,12 +20,12 @@ DAILY_CHORES = {
 }
 
 WEEKLY_CHORES = {
-    "Hoovering": ALL_PEOPLE[(WEEKLY_COUNTER+1) % 4],
-    "Bathrooms": ALL_PEOPLE[(WEEKLY_COUNTER+2) % 4],
-    "Kitchen": ALL_PEOPLE[(WEEKLY_COUNTER+3) % 4],
-    "Bins": ALL_PEOPLE[WEEKLY_COUNTER % 4],
-    "Dusting": ALL_PEOPLE[(WEEKLY_COUNTER+3) % 4],
-    "Watering": ALL_PEOPLE[WEEKLY_COUNTER % 4]
+    "Hoovering": ALL_PEOPLE,
+    "Bathrooms": ALL_PEOPLE[[1, 2, 3, 0]],
+    "Kitchen": ALL_PEOPLE[[3,0,2,1]],
+    "Bins": ALL_PEOPLE[[2, 1, 3, 0]],
+    "Dusting": ALL_PEOPLE[[1, 3, 0, 2]],
+    "Watering": ALL_PEOPLE[[3, 0, 1, 2]]
 }
 NUMBER_PEOPLE = len(ALL_PEOPLE)
 
