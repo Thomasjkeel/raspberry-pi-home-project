@@ -59,7 +59,7 @@ def read_and_update_day_counter():
 
         earliest_counter = day_log[min_date][0]
         day_counter = (min_days_away + earliest_counter)
-        print(min_days_away, day_counter)
+        print(earliest_counter, min_days_away, day_counter)
 
         print(min_date, max_date)
         if save_log_file_status():
