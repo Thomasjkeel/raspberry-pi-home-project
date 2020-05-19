@@ -37,14 +37,14 @@ def read_and_update_day_counter():
     with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
         # order dates
-        today = datetime.datetime.now()
+        today = datetime.datetime.date(datetime.datetime.now())
         # order data by days from: https://stackoverflow.com/questions/34129391/sort-python-dictionary-by-date-key/34129758
         ordered_data = sorted(day_log.items(), key=lambda x: datetime.datetime.strptime(
             x[0], '%d %b %Y'), reverse=True)
         earliest = ordered_data[-1]
         
-        difference = datetime.datetime.strptime(earliest[0], '%d %b %Y') - today
-        print(difference, today, earliest[0])
+        difference = datetime.datetime.date(datetime.datetime.strptime(
+            earliest[0], '%d %b %Y')) - today
         days_away = int(difference.days)
 
         earliest_counter = earliest[1][0]
@@ -62,7 +62,7 @@ def read_and_update_day_counter():
                 date_counter_changes = val[0]
                 break
         if date_counter_changes:
-            difference = datetime.datetime.strptime(date_counter_changes, '%d %b %Y') - today
+            difference = datetime.datetime.date(datetime.datetime.strptime(date_counter_changes, '%d %b %Y')) - today
             days_until_change = difference.days
             next_change = days_until_change % 7
         else:
