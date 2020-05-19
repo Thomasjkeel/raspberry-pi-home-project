@@ -44,13 +44,13 @@ def read_and_update_day_counter():
         earliest = ordered_data[-1]
         
         difference = datetime.datetime.strptime(earliest[0], '%d %b %Y') - today
+        print(difference, today, earliest[0])
         days_away = int(difference.days)
 
         earliest_counter = earliest[1][0]
         # day counter (i.e current day number)
         day_counter = (days_away + earliest_counter)
         current_day_index = day_counter % NUMBER_PEOPLE
-        print(current_day_index, day_counter, days_away, earliest_counter)
         # week counter (current week number)
         week_counter = earliest[1][1]
         if week_counter == today.strftime('%d %b %Y'):
