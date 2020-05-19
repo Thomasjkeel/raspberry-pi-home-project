@@ -54,7 +54,7 @@ EMAIL_TIME_HOUR = 8
 EMAIL_TIME_MINUTE = 30
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
-SCROLL_SPEED = (0.06)
+SCROLL_SPEED = (0.05)
 
 RANDOM_EVENTS = ['Board Game', 'Book Club', 'Garden Time',
                  'Movie Time', 'You Decide', 'Craft Club', 'Party Game']
@@ -112,7 +112,7 @@ def watch_pi():
                         os._exit(1)
                         # subprocess.Popen(['sudo' 'shutdown', '-h', 'now'])
                     elif event.direction == 'down':
-                        sense.show_message('For chores press down', back_colour=BACK_COLOUR,
+                        sense.show_message('For chores press up', back_colour=BACK_COLOUR,
                                            text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'left':
                         print('getting facts...')
