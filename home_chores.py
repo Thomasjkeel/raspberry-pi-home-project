@@ -49,7 +49,7 @@ with open(EMAIL_ADRESSES_TXT) as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
 
 EMAIL_TIME_HOUR = 9
-EMAIL_TIME_MINUTE = 12
+EMAIL_TIME_MINUTE = 15
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
@@ -155,7 +155,8 @@ def distribute_emails():
                 sender = emailer.Emailer()
                 for name in EMAIL_ADDRESSES.keys():
                     current_date = datetime.datetime.now().strftime('%d %b')
-                    make_email(sender, name, EMAIL_ADDRESSES[name], current_date)
+                    print(name, EMAIL_ADDRESSES[name])
+                    # make_email(sender, name, EMAIL_ADDRESSES[name], current_date)
                 sense.show_message('all emails sent',  back_colour=BACK_COLOUR,
                                    text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                 EMAIL_SENT_TODAY = True
