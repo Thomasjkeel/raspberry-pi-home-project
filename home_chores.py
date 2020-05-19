@@ -48,8 +48,9 @@ EMAIL_ADRESSES_TXT = '/home/pi/Documents/home_chores_project/email_addresses.txt
 sense.show_message('Hello')
 
 with open(EMAIL_ADRESSES_TXT) as json_file:
-    EMAIL_ADDRESSES = json.load(json_file).encode("utf-8")
+    EMAIL_ADDRESSES = json.load(json_file, cls=json.JSONEncoder)
 print(EMAIL_ADDRESSES)
+
 EMAIL_TIME_HOUR = 9
 EMAIL_TIME_MINUTE = 18
 SEND_EMAILS = True
