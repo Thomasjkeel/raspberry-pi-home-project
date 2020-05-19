@@ -43,6 +43,8 @@ sense.low_light = True
 sense.set_rotation(180)
 EMAIL_ADRESSES_TXT = '/home/pi/Documents/home_chores_project/email_addresses.txt'
 
+sense.show_message('Hello')
+
 with open(EMAIL_ADRESSES_TXT) as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
 
