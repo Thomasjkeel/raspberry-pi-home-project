@@ -43,6 +43,10 @@ def read_and_update_day_counter():
         all_days = list(day_log.keys())
         today = datetime.datetime.now()
         # determine how many days away the nearest date is:
+        ordered_data = sorted(day_log.items(), key=lambda x: datetime.strptime(
+            x[0], '%d-%m-%Y'), reverse=True)
+        print(ordered_data)
+
         min_days_away = 999
         max_days_away = 0
         min_date = today.strftime('%d %b %Y')
@@ -51,17 +55,28 @@ def read_and_update_day_counter():
             difference = datetime.datetime.strptime(day, '%d %b %Y') - today
             days_away = int(difference.days)
             if days_away <= min_days_away:
-                min_days_away = days_away
+                min_days_away =abs(days_away)
                 min_date = day
             elif days_away >= max_days_away:
-                max_days_away = days_away
+                max_days_away = abs(days_away)
                 max_date = day
 
         earliest_counter = day_log[min_date][0]
-        day_counter = (abs(min_days_away) + earliest_counter)
-        print(day_counter)
+        day_counter = (min_days_away + earliest_counter)
+        # work out current day counter
+        DAY_COUNTER = day_counter % NUMBER_PEOPLE
 
-        print(min_date, max_date)
+        # week counter
+
+
+        for i in range(0, 7):
+                if week_counter % 7 == 0:
+                    WEEKLY_COUNTER += 1
+                day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
+                        ] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
+                day_counter += 1
+                week_counter += 1
+
         if save_log_file_status():
             latest_week_counter = numpy.array(list(day_log.values()))[:, 1].max()
             
