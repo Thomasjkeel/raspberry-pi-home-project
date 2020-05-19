@@ -71,11 +71,11 @@ def read_and_update_day_counter():
         for i in range(0, 7):
             if i > next_change:
                 day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
-                        ] = [day_counter % NUMBER_PEOPLE, week_counter+1]
+                        ] = [day_counter, week_counter+1]
                 day_counter += 1
                 continue
             day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
-                    ] = [day_counter % NUMBER_PEOPLE, week_counter]
+                    ] = [day_counter, week_counter]
             day_counter += 1
 
         with open(CHORE_TXT, 'w') as outfile:
