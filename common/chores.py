@@ -44,7 +44,7 @@ def read_and_update_day_counter():
         today = datetime.datetime.now()
         # determine how many days away the nearest date is:
         ordered_data = sorted(day_log.items(), key=lambda x: datetime.datetime.strptime(
-            x[0], '%d-%m-%Y'), reverse=True)
+            x[0], '%d %b %Y'), reverse=True)
         print(ordered_data)
 
         min_days_away = 999
