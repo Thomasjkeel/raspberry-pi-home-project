@@ -48,8 +48,8 @@ sense.show_message('Hello')
 with open(EMAIL_ADRESSES_TXT) as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
 
-EMAIL_TIME_HOUR = 8
-EMAIL_TIME_MINUTE = 59
+EMAIL_TIME_HOUR = 9
+EMAIL_TIME_MINUTE = 7
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.06)
