@@ -55,7 +55,7 @@ def read_and_update_day_counter():
         week_counter = earliest[1][1]
         if week_counter == today.strftime('%d %b %Y'):
             return current_day_index, day_log[today.strftime('%d %b %Y')][1]
-            
+
         date_counter_changes = False
         for val in ordered_data:
             if val[1][1] > week_counter:
@@ -70,7 +70,9 @@ def read_and_update_day_counter():
         # preserve the week number and increase if past the threshold day
         for i in range(0, 7):
             if i >= next_change:
-                week_counter += 1
+                day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
+                        ] = [day_counter % NUMBER_PEOPLE, week_counter+1]
+                continue
             day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
                     ] = [day_counter % NUMBER_PEOPLE, week_counter]
             day_counter += 1
