@@ -9,7 +9,6 @@ import time
 import numpy
 import json
 
-
 ALL_PEOPLE = numpy.array(['T', 'J', 'M', 'F'])
 DAY_COUNTER = 0
 WEEKLY_COUNTER = 0
@@ -36,7 +35,7 @@ CHORE_TXT = '/home/pi/Documents/home_chores_project/raspberry-pi-home-project/da
 
 
 def read_and_update_day_counter():
-    global DAY_COUNTER, WEEKLY_COUNTER
+    global DAY_COUNTER, WEEKLY_COUNTER, SAVE_LOG_FILE
     # load in data and check how many days ago the last one was and divide by 4
     with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
@@ -49,9 +48,7 @@ def read_and_update_day_counter():
     days_away = difference.days
     day_counter = (days_away + current_counters[0])
     week_counter = 0
-    print('before', WEEKLY_COUNTER)
     WEEKLY_COUNTER = current_counters[1]
-    print('after', WEEKLY_COUNTER)
     day_log = {}
     DAY_COUNTER = day_counter % NUMBER_PEOPLE
     for i in range(0, 7):
@@ -61,11 +58,12 @@ def read_and_update_day_counter():
                 ] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
         day_counter += 1
         week_counter += 1
-    print('last', WEEKLY_COUNTER)
 
     # re-save the file
-    with open(CHORE_TXT, 'w') as outfile:
-        json.dump(day_log, outfile)
+    if SAVE_LOG_FILE:
+        with open(CHORE_TXT, 'w') as outfile:
+            json.dump(day_log, outfile)
+        SAVE_LOG_FILE = False
 
     return DAY_COUNTER, day_log[today.strftime('%d %b %Y')][1]
 
