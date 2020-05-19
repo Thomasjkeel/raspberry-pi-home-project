@@ -54,7 +54,6 @@ EMAIL_TIME_HOUR = 8
 EMAIL_TIME_MINUTE = 30
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
-SAVE_LOG_FILE = True
 SCROLL_SPEED = (0.05)
 
 RANDOM_EVENTS = ['Board Game', 'Book Club', 'Garden Time',
@@ -165,8 +164,6 @@ def distribute_emails():
                 EMAIL_SENT_TODAY = True
             elif current_time.tm_hour == 1 and current_time.tm_min == 0:
                 EMAIL_SENT_TODAY = False
-                with open('save_log.txt', 'w') as my_file:
-                    my_file.write('True')
 
             time.sleep(30)
             pass

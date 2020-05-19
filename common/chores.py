@@ -39,72 +39,46 @@ def read_and_update_day_counter():
     # load in data and check how many days ago the last one was and divide by 4
     with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
-        # read last day and counter value
-        all_days = list(day_log.keys())
+        # order dates
         today = datetime.datetime.now()
         # order data by days from: https://stackoverflow.com/questions/34129391/sort-python-dictionary-by-date-key/34129758
         ordered_data = sorted(day_log.items(), key=lambda x: datetime.datetime.strptime(
-            x[0], '%d %m %Y'), reverse=True)
-        (ordered_data)
+            x[0], '%d %b %Y'), reverse=True)
         earliest = ordered_data[-1]
-        latest = ordered_data[0]
         
         difference = datetime.datetime.strptime(earliest[0], '%d %b %Y') - today
         days_away = int(difference.days)
 
         earliest_counter = earliest[1][0]
+        # day counter (i.e current day number)
         day_counter = (days_away + earliest_counter)
-        # work out current day counter
         DAY_COUNTER = day_counter % NUMBER_PEOPLE
 
-        # week counter
-        
-
+        # week counter (current week number)
+        week_counter = earliest_counter[1][1]
+        date_counter_changes = False
+        for val in ordered_data:
+            if val[1][1] > week_counter:
+                date_counter_changes = val[0]
+                break
+        if date_counter_changes:
+            difference = datetime.datetime.strptime(date_counter_changes, '%d %b %Y') - today
+            days_until_change = difference.days
+            next_change = days_until_change % 7
+        else:
+            next_change = 7
+        # preserve the week number and increase if past the threshold day
         for i in range(0, 7):
-                if week_counter % 7 == 0:
-                    WEEKLY_COUNTER += 1
-                day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
-                        ] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
-                day_counter += 1
+            if i >= next_change:
                 week_counter += 1
+            day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
+                    ] = [day_counter % NUMBER_PEOPLE, week_counter]
+            day_counter += 1
 
-        if save_log_file_status():
-            latest_week_counter = numpy.array(list(day_log.values()))[:, 1].max()
-            
-            difference = today - datetime.datetime.strptime(a_day[0], '%d %b %Y')
-            # set WEEKLY_COUNTER
-            days_away = difference.days
-            counter_on_a_day = day[1][0]
-            day_counter = (days_away + counter_on_a_day)
-            week_counter = 0
-        
-            WEEKLY_COUNTER = latest_week_counter
-            day_log = {}
-            DAY_COUNTER = day_counter % NUMBER_PEOPLE
-            for i in range(0, 7):
-                if week_counter % 7 == 0:
-                    WEEKLY_COUNTER += 1
-                day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
-                        ] = [day_counter % NUMBER_PEOPLE, WEEKLY_COUNTER]
-                day_counter += 1
-                week_counter += 1
-        
-        
-            with open(CHORE_TXT, 'w') as outfile:
-                json.dump(day_log, outfile)
+        with open(CHORE_TXT, 'w') as outfile:
+            json.dump(day_log, outfile)
 
     return DAY_COUNTER, day_log[today.strftime('%d %b %Y')][1]
-
-def save_log_file_status():
-    with open('save_log.txt') as my_file:
-        save_day_log = my_file.read()
-    
-    if save_day_log == 'True':
-        with open('save_log.txt', 'w') as my_file:
-            my_file.write('False')
-        return True
-    else:
-        return False
 
 
 def get_current_week_range():
