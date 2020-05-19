@@ -47,7 +47,7 @@ EMAIL_ADRESSES_TXT = '/home/pi/Documents/home_chores_project/email_addresses.txt
 
 sense.show_message('Hello')
 
-with open(EMAIL_ADRESSES_TXT) as json_file:
+with open(EMAIL_ADRESSES_TXT, encoding='utf-8') as json_file:
     EMAIL_ADDRESSES = json.load(json_file, cls=json.JSONDecoder)
 print(EMAIL_ADDRESSES)
 
