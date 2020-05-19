@@ -45,19 +45,21 @@ def read_and_update_day_counter():
         # determine how many days away the nearest date is:
         min_days_away = 999
         max_days_away = 0
-        min_date = ''
-        max_date = ''
+        min_date = today.strftime('%d %b %Y')
+        max_date = today.strftime('%d %b %Y')
         for day in all_days:
-            print(day)
             difference = datetime.datetime.strptime(day, '%d %b %Y') - today
             days_away = int(difference.days)
-            print(days_away, days_away <= min_days_away)
             if days_away <= min_days_away:
                 min_days_away = days_away
                 min_date = day
             elif days_away >= max_days_away:
                 max_days_away = days_away
                 max_date = day
+
+        earliest_counter = day_log[min_date][0]
+        day_counter = (min_days_away + earliest_counter)
+        print(min_days_away, day_counter)
 
         print(min_date, max_date)
         if save_log_file_status():
