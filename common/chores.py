@@ -40,15 +40,17 @@ def read_and_update_day_counter():
     with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
     # read last day and counter value
-    last_day, current_counters = day_log.popitem()
+    a_day = day_log.popitem()
+    latest_week_counter = numpy.array(list(day_log.values()))[:, 1].max()
     # then how many days away:
     today = datetime.datetime.now()
-    difference = today - datetime.datetime.strptime(last_day, '%d %b %Y')
+    difference = today - datetime.datetime.strptime(a_day[0], '%d %b %Y')
     # set WEEKLY_COUNTER
     days_away = difference.days
-    day_counter = (days_away + current_counters[0])
+    counter_on_a_day = a_day[1][0]
+    day_counter = (days_away + counter_on_a_day)
     week_counter = 0
-    WEEKLY_COUNTER = current_counters[1]
+    WEEKLY_COUNTER = latest_week_counter
     day_log = {}
     DAY_COUNTER = day_counter % NUMBER_PEOPLE
     for i in range(0, 7):
