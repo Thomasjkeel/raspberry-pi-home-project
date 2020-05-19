@@ -72,6 +72,7 @@ def read_and_update_day_counter():
             if i > next_change:
                 day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
                         ] = [day_counter % NUMBER_PEOPLE, week_counter+1]
+                day_counter += 1
                 continue
             day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
                     ] = [day_counter % NUMBER_PEOPLE, week_counter]
