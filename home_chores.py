@@ -149,13 +149,12 @@ def make_email(sender, name, email_add, current_date):
 def distribute_emails():
     global SEND_EMAILS, EMAIL_SENT_TODAY
     while True:
-        print('chores')
-        chores.read_and_update_day_counter()
         if SEND_EMAILS:
             current_time = time.localtime()
             if current_time.tm_hour == EMAIL_TIME_HOUR and current_time.tm_min == EMAIL_TIME_MINUTE and not EMAIL_SENT_TODAY:
                 sense.show_message('sending emails',  back_colour=BACK_COLOUR,
                                    text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
+                chores.read_and_update_day_counter()
                 sender = emailer.Emailer()
                 for name in EMAIL_ADDRESSES.keys():
                     current_date = datetime.datetime.now().strftime('%d %b')
