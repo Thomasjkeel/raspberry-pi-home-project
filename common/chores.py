@@ -69,17 +69,16 @@ def read_and_update_day_counter():
             next_change = days_until_change % 7
         else:
             next_change = 7
+        week_counter = (days_away + next_change) % 7
         # preserve the week number and increase if past the threshold day
         day_log = {} #
-        for i in range(0, 7):
-            if i > next_change:
+        for i in range(0, 8):
+            if i >= next_change:
                 day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
-                        ] = [day_counter % NUMBER_PEOPLE, week_counter+1]
-                day_counter += 1
+                        ] = [(current_day_index + i) % NUMBER_PEOPLE, week_counter+1]
                 continue
             day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
-                    ] = [day_counter % NUMBER_PEOPLE, week_counter]
-            day_counter += 1
+                    ] = [(current_day_index + i) % NUMBER_PEOPLE, week_counter]
 
         with open(CHORE_TXT, 'w') as outfile:
             json.dump(day_log, outfile)
