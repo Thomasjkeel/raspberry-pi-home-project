@@ -13,20 +13,22 @@ ALL_PEOPLE = numpy.array(['T', 'J', 'M', 'F'])
 DAILY_CHORES = {
     "Walkies": ALL_PEOPLE,
     "Dishes": ALL_PEOPLE[[1, 2, 3, 0]],
-    "Lunch": ALL_PEOPLE[[2, 3, 0, 2, 3, 0]],
-    "Dinner": ALL_PEOPLE[[3, 0, 1, 2]],
-    "Feed Animals": ALL_PEOPLE[[1, 3, 0, 2]],
-    "Clean Room": ALL_PEOPLE[[2, 1, 3, 0]]
+    "Dinner": ALL_PEOPLE[[2, 3, 0, 1]],
+    "Feed Animals": ALL_PEOPLE[[3, 0, 1, 2]],
+    "Clean Room": ALL_PEOPLE[[0, 1, 2, 3]],
+    "Lunch": ALL_PEOPLE[[2, 3, 0, 2, 3, 0]]
 }
 
 WEEKLY_CHORES = {
     "Hoovering": ALL_PEOPLE,
     "Bathrooms": ALL_PEOPLE[[1, 2, 3, 0]],
-    "Kitchen": ALL_PEOPLE[[3,0,2,1]],
-    "Bins": ALL_PEOPLE[[2, 1, 3, 0]],
-    "Dusting": ALL_PEOPLE[[1, 3, 0, 2]],
-    "Watering": ALL_PEOPLE[[3, 0, 1, 2]]
+    "Kitchen": ALL_PEOPLE[[2,3,0,1]],
+    "Bins": ALL_PEOPLE[[3, 0, 1, 2]],
+    "Dusting": ALL_PEOPLE[[0, 1, 2, 3]],
+    "Watering": ALL_PEOPLE[[1, 2, 3, 0]],
+    "Shopping": ALL_PEOPLE[[2, 3, 0, 1]]
 }
+
 NUMBER_PEOPLE = len(ALL_PEOPLE)
 
 CHORE_TXT = '/home/pi/Documents/home_chores_project/raspberry-pi-home-project/day_log.txt'
