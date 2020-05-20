@@ -119,3 +119,6 @@ def get_chores():
     all_chores = {'daily': daily_chores, 'weekly': weekly_chores}
 
     return chore_message, all_chores
+
+
+read_and_update_day_counter
