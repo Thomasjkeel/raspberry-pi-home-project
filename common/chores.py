@@ -67,7 +67,7 @@ def read_and_update_day_counter():
         if date_counter_changes:
             difference = datetime.datetime.date(datetime.datetime.strptime(date_counter_changes, '%d %b %Y')) - today
             days_until_change = difference.days
-            next_change = days_until_change % 7
+            next_change = days_until_change 
         else:
             next_change = 7
         print(week_counter, days_away, next_change, days_until_change)
@@ -75,6 +75,7 @@ def read_and_update_day_counter():
             week_counter += (days_away - (7-days_until_change)) / 7
         # preserve the week number and increase if past the threshold day
         day_log = {}
+        print(week_counter)
         for i in range(0, 8):
             if i >= next_change:
                 day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
