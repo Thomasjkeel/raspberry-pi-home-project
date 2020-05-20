@@ -70,7 +70,7 @@ def read_and_update_day_counter():
             next_change = days_until_change % 7
         else:
             next_change = 7
-
+        print(week_counter, days_away, next_change)
         if days_away > (7-next_change):
             week_counter += (days_away - (7-days_until_change)) / 7
         # preserve the week number and increase if past the threshold day
