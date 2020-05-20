@@ -149,6 +149,7 @@ def make_email(sender, name, email_add, current_date):
 def distribute_emails():
     global SEND_EMAILS, EMAIL_SENT_TODAY
     while True:
+        print('chores')
         chores.read_and_update_day_counter()
         if SEND_EMAILS:
             current_time = time.localtime()
