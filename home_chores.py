@@ -150,7 +150,6 @@ def distribute_emails():
     global SEND_EMAILS, EMAIL_SENT_TODAY
     while True:
         if SEND_EMAILS:
-            chores.read_and_update_day_counter()
             current_time = time.localtime()
             if current_time.tm_hour == EMAIL_TIME_HOUR and current_time.tm_min == EMAIL_TIME_MINUTE and not EMAIL_SENT_TODAY:
                 sense.show_message('sending emails',  back_colour=BACK_COLOUR,
