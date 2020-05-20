@@ -50,7 +50,7 @@ sense.show_message('Hello :)')
 with open(EMAIL_ADRESSES_TXT, 'rb') as json_file:
     EMAIL_ADDRESSES = json.load(json_file)
 
-EMAIL_TIME_HOUR = 8
+EMAIL_TIME_HOUR = 7
 EMAIL_TIME_MINUTE = 30
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
