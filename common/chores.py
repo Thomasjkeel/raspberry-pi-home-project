@@ -47,7 +47,7 @@ def read_and_update_day_counter():
         
         difference = datetime.datetime.date(datetime.datetime.strptime(
             earliest[0], '%d %b %Y')) - today
-        days_away = int(difference.days)
+        days_away = abs(int(difference.days))
 
         earliest_counter = earliest[1][0]
         # day counter (i.e current day number)
