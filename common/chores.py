@@ -122,5 +122,3 @@ def get_chores():
 
     return chore_message, all_chores
 
-
-read_and_update_day_counter
