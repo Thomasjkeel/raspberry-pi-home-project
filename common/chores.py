@@ -71,6 +71,7 @@ def read_and_update_day_counter():
             next_change = 7 
         last_change = (7-next_change) 
         week_counter = int(numpy.floor((days_away + last_change) / 7) + week_counter)
+        print(last_change, week_counter)
         # preserve the week number and increase if past the threshold day
         day_log = {} #
         for i in range(0, 8):
