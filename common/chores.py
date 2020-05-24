@@ -56,18 +56,19 @@ def read_and_update_day_counter():
         # week counter (current week number)
         week_counter = earliest[1][1]
 
-        # ## return data if the earliest day is already today
-        # if earliest[0] == today.strftime('%d %b %Y'):
-        #     return current_day_index, day_log[today.strftime('%d %b %Y')][1]
+        ## return data if the earliest day is already today
+        if earliest[0] == today.strftime('%d %b %Y'):
+            return current_day_index, day_log[today.strftime('%d %b %Y')][1]
 
         date_counter_changes = False
         for val in ordered_data:
             if val[1][1] > week_counter:
                 date_counter_changes = val[0]
+                print(date_counter_changes)
                 break
         if date_counter_changes:
-            print('here')
             difference = datetime.datetime.date(datetime.datetime.strptime(date_counter_changes, '%d %b %Y')) - today
+            print(difference, date_counter_changes)
             days_until_change = difference.days
             next_change = days_until_change 
         else:
@@ -79,10 +80,6 @@ def read_and_update_day_counter():
         day_log = {}
         print(week_counter)
 
-        ## return data if the earliest day is already today
-        if earliest[0] == today.strftime('%d %b %Y'):
-            return current_day_index, day_log[today.strftime('%d %b %Y')][1]
-            
         for i in range(0, 8):
             if i >= next_change:
                 day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
