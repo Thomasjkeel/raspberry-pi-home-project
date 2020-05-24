@@ -55,6 +55,8 @@ def read_and_update_day_counter():
         current_day_index = day_counter % NUMBER_PEOPLE
         # week counter (current week number)
         week_counter = earliest[1][1]
+
+        ## return data if the earliest day is already today
         if earliest[0] == today.strftime('%d %b %Y'):
             return current_day_index, day_log[today.strftime('%d %b %Y')][1]
 
@@ -64,6 +66,7 @@ def read_and_update_day_counter():
                 date_counter_changes = val[0]
                 break
         if date_counter_changes:
+            print('here')
             difference = datetime.datetime.date(datetime.datetime.strptime(date_counter_changes, '%d %b %Y')) - today
             days_until_change = difference.days
             next_change = days_until_change 
