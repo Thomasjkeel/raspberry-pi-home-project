@@ -57,8 +57,8 @@ def read_and_update_day_counter():
         week_counter = earliest[1][1]
 
         ## return data if the earliest day is already today
-        if earliest[0] == today.strftime('%d %b %Y'):
-            return current_day_index, day_log[today.strftime('%d %b %Y')][1]
+        # if earliest[0] == today.strftime('%d %b %Y'):
+        #     return current_day_index, day_log[today.strftime('%d %b %Y')][1]
 
         date_counter_changes = False
         for val in ordered_data:
