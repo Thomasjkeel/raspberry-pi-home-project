@@ -42,8 +42,8 @@ def read_and_update_day_counter():
         today = datetime.datetime.date(datetime.datetime.now())
         # order data by days from: https://stackoverflow.com/questions/34129391/sort-python-dictionary-by-date-key/34129758
         ordered_data = sorted(day_log.items(), key=lambda x: datetime.datetime.strptime(
-            x[0], '%d %b %Y'), reverse=True)
-        earliest = ordered_data[-1]
+            x[0], '%d %b %Y'), reverse=False)
+        earliest = ordered_data[0]
         
         difference = datetime.datetime.date(datetime.datetime.strptime(
             earliest[0], '%d %b %Y')) - today
