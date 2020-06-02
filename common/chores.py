@@ -16,7 +16,7 @@ DAILY_CHORES = {
     "Dinner": ALL_PEOPLE[[2, 3, 0, 1]],
     "Feed Animals": ALL_PEOPLE[[3, 0, 1, 2]],
     "Clean Room": ALL_PEOPLE[[0, 1, 2, 3]],
-    "Lunch": ALL_PEOPLE[[2, 3, 0, 2, 3, 0]]
+    "Lunch": ALL_PEOPLE[[0,1, 3, 2]]
 }
 
 WEEKLY_CHORES = {
@@ -26,7 +26,7 @@ WEEKLY_CHORES = {
     "Bins": ALL_PEOPLE[[3, 0, 1, 2]],
     "Dusting": ALL_PEOPLE[[0, 1, 2, 3]],
     "Watering": ALL_PEOPLE[[1, 2, 3, 0]],
-    "Shopping": ALL_PEOPLE[[2, 3, 0, 1]]
+    "Shopping": ALL_PEOPLE[[2, 1, 2, 1]]
 }
 
 NUMBER_PEOPLE = len(ALL_PEOPLE)
