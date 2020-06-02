@@ -92,8 +92,10 @@ def watch_pi():
                         print('getting date...')
                         get_date(sense)
                     elif event.direction == 'right':
-                        sense.show_message('Controls: U: Chores D: Weather L: Date R: Controls M: Random Event', back_colour=BACK_COLOUR,
-                                           text_colour=TEXT_COLOUR, scroll_speed=(0.03))
+                        print('getting facts...')
+                        fact = collect_facts.collect_facts()
+                        sense.show_message(
+                            fact, back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                     elif event.direction == 'middle':
                         print('getting random event...')
                         rand_event = RANDOM_EVENTS[random.randint(
@@ -112,13 +114,10 @@ def watch_pi():
                         os._exit(1)
                         # subprocess.Popen(['sudo' 'shutdown', '-h', 'now'])
                     elif event.direction == 'down':
-                        sense.show_message('For chores press up', back_colour=BACK_COLOUR,
-                                           text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
+                        pass
                     elif event.direction == 'left':
-                        print('getting facts...')
-                        fact = collect_facts.collect_facts()
-                        sense.show_message(
-                            fact, back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
+                        sense.show_message('Controls: U: Chores D: Weather L: Date R: Controls M: Random Event', back_colour=BACK_COLOUR,
+                                            text_colour=TEXT_COLOUR, scroll_speed=(0.03))
                     elif event.direction == 'right':
                         sense.show_message('toggling emails. set to: %s ' %
                                            (not SEND_EMAILS), back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
