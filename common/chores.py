@@ -116,7 +116,7 @@ def get_chores():
         daily_chores[DAILY_CHORES[dkey][current_day_index]].append(dkey)
 
     weekly_chores = {i: [] for i in ALL_PEOPLE}
-    chore_message += 'Weekly Chores by Sunday'
+    chore_message += 'Weekly Chores by Sunday '
     for wkey in WEEKLY_CHORES.keys():
         chore_message += wkey + ": " + \
             WEEKLY_CHORES[wkey][current_week] + '  '
