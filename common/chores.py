@@ -9,14 +9,14 @@ import time
 import numpy
 import json
 
-ALL_PEOPLE = numpy.array(['T', 'J', 'M', 'F'])
+ALL_PEOPLE = numpy.array(['B', 'F', 'J', 'M', 'T'])
 DAILY_CHORES = {
-    "Walkies": ALL_PEOPLE,
-    "Dishes": ALL_PEOPLE[[1, 2, 3, 0]],
-    "Dinner": ALL_PEOPLE[[2, 3, 0, 1]],
-    "Feed Animals": ALL_PEOPLE[[3, 0, 1, 2]],
-    "Clean Room": ALL_PEOPLE[[0, 1, 2, 3]],
-    "Lunch": ALL_PEOPLE[[0,1, 3, 2]]
+    "Walk Dogs": ALL_PEOPLE,
+    "Dishes": ALL_PEOPLE[[1, 2, 3, 4, 0]],
+    "Dinner": ALL_PEOPLE[[2, 3, 4, 0]],
+    "Feed Animals": ALL_PEOPLE[[3, 4, 0, 2]],
+    "Chickens": ALL_PEOPLE[[1,1,1,1]],
+    "Tidy Room": ALL_PEOPLE[[4, 0, 1, 2, 3]]
 }
 
 WEEKLY_CHORES = {
