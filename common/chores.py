@@ -22,11 +22,11 @@ DAILY_CHORES = {
 WEEKLY_CHORES = {
     "Hoovering": ALL_PEOPLE,
     "Bathrooms": ALL_PEOPLE[[1, 2, 3, 0]],
-    "Kitchen": ALL_PEOPLE[[2,3,0,1]],
-    "Bins": ALL_PEOPLE[[3, 0, 1, 2]],
+    "Kitchen": ALL_PEOPLE[[2, 3, 0, 1]],
+    "Bins and Recycling": ALL_PEOPLE[[3, 0, 1, 2]],
     "Dusting": ALL_PEOPLE[[0, 1, 2, 3]],
     "Watering": ALL_PEOPLE[[1, 2, 3, 0]],
-    "Shopping": ALL_PEOPLE[[2, 1, 2, 1]]
+    "Shopping": ALL_PEOPLE[[2, 3, 2, 3]]
 }
 
 NUMBER_PEOPLE = len(ALL_PEOPLE)
@@ -35,7 +35,7 @@ CHORE_TXT = '/home/pi/Documents/home_chores_project/raspberry-pi-home-project/da
 
 
 def read_and_update_day_counter():
-    # load in data and check how many days ago the last one was and divide by 4
+    # load in data and check how many days ago the last one was and divide by number of people
     with open(CHORE_TXT) as json_file:
         day_log = json.load(json_file)
         # order dates
@@ -60,6 +60,7 @@ def read_and_update_day_counter():
         if earliest[0] == today.strftime('%d %b %Y'):
             return current_day_index, day_log[today.strftime('%d %b %Y')][1]
 
+        # week counter changes
         date_counter_changes = False
         for val in ordered_data:
             if val[1][1] > week_counter:
@@ -72,6 +73,7 @@ def read_and_update_day_counter():
         else:
             next_change = 7
             days_until_change = 7
+
         if days_away > days_until_change:
             week_counter += (days_away - (7-days_until_change)) / 7
         # preserve the week number and increase if past the threshold day
@@ -116,7 +118,7 @@ def get_chores():
         daily_chores[DAILY_CHORES[dkey][current_day_index]].append(dkey)
 
     weekly_chores = {i: [] for i in ALL_PEOPLE}
-    chore_message += 'Weekly Chores by Sunday '
+    chore_message += 'Weekly Chores by Sunday: '
     for wkey in WEEKLY_CHORES.keys():
         chore_message += wkey + ": " + \
             WEEKLY_CHORES[wkey][current_week] + '  '
