@@ -150,13 +150,14 @@ def watch_pi():
 
 def make_email(sender, name, email_add, current_date):
     _, all_chores = chores.get_chores()
+    fact = collect_facts.collect_facts()
     daily_chores = ("".join(['<li>%s</li>']*len(all_chores['daily']
                                                 [name[0]]))) % tuple(all_chores['daily'][name[0]])
     weekly_chores = ("".join(['<li>%s</li>']*len(all_chores['weekly']
                                                  [name[0]]))) % tuple(all_chores['weekly'][name[0]])
     emailSubject = "Chores for %s" % (current_date)
     emailContent = "Hello %s! <br><br> Your Daily Chores for today are: <br> <ul> %s </ul> <br><br> Chores which will \
-        need to be completed by this Sunday are: <br> <ul> %s </ul> <br><br>. Have a good day, <br>Raspberry Pi out." % (name, daily_chores, weekly_chores)
+        need to be completed by this Sunday are: <br> <ul> %s </ul> <br><br>. Have a good day, <br>Raspberry Pi out. <br><br> Daily Fact: %s " % (name, daily_chores, weekly_chores, fact)
     sender.sendmail(email_add, emailSubject, emailContent)
     return
 
