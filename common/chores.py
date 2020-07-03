@@ -81,7 +81,7 @@ def read_and_update_day_counter():
         # preserve the week number and increase if past the threshold day
         day_log = {}
 
-        for i in range(0, 8):
+        for i in range(0, 9):
             if i >= next_change:
                 day_log[(today + datetime.timedelta(days=i)).strftime('%d %b %Y')
                         ] = [(current_day_index + i) % NUMBER_PEOPLE, week_counter+1]
