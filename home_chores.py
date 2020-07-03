@@ -3,7 +3,7 @@
 """
     Description
     =====================
-    Main application file
+    Main application file. Runs a program for deciding who has chores today and then emails them with their list.
     
     Requirements
     ====================
@@ -11,20 +11,19 @@
 
     Joystick Functionality
     =====================
-    UP: List all chores on rota and current assignee
-    DOWN: Weather from SENSE HAT
-    DOWN*2: Stop program and exit 
-    LEFT: Show controls
-    LEFT*2: Toggle emails
-    RIGHT: Current date and time
-    RIGHT*2: Random fact from uselessfacts API
-    MIDDLE: Random event chooser
-    MIDDLE*2: LED light Dance 
+    DOWN : List all chores on rota and current assignee
+    UP : Weather from SENSE HAT
+    UP*2 : Stop program and exit 
+    RIGHT : Random fact from uselessfacts API
+    RIGHT*2: Toggle emails
+    LEFT : Current date and time
+    LEFT*2: Show controls
+    MIDDLE : Random event chooser
 
     Notes:
     ====================
     Email addresses will need to be stored in a seperate file within the Raspberry Pi's filesystem.
-    Can be run using a crontab job e.g. @reboot python <PATH TO FILE>/home_chores.py &
+    Can be run using a crontab job on the Raspberry Pi e.g. @reboot python <PATH TO FILE>/home_chores.py &
 
 """
 from sense_hat import SenseHat
@@ -37,6 +36,10 @@ import subprocess
 import random
 import json
 import os
+
+# set a random seed
+random.seed(datetime.datetime.now())
+
 
 # instatiate and clear the Sense Hat
 sense = SenseHat()
@@ -106,28 +109,32 @@ def watch_pi():
                         pass
                     LAST = event.direction
                 else:
-                    ## double clicks ##
+                    ## FOR DOUBLE CLICKS ##
                     if event.direction == 'up':
+                        # power off
                         sense.show_message(
                             'powering off...', text_colour=r, scroll_speed=SCROLL_SPEED)
                         time.sleep(10)
                         os._exit(1)
-                        # subprocess.Popen(['sudo' 'shutdown', '-h', 'now'])
                     elif event.direction == 'down':
                         pass
                     elif event.direction == 'left':
+                        # show controls
                         sense.show_message('Controls: U: Chores D: Weather L: Date R: Controls M: Random Event', back_colour=BACK_COLOUR,
                                             text_colour=TEXT_COLOUR, scroll_speed=(0.03))
                     elif event.direction == 'right':
+                        # toggle emails
                         sense.show_message('toggling emails. set to: %s ' %
                                            (not SEND_EMAILS), back_colour=BACK_COLOUR, text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                         SEND_EMAILS = not SEND_EMAILS
                     elif event.direction == 'middle':
                         print('dance baby...')
-                        dance_baby(sense)
+                        pass
                     else:
                         pass
                     LAST = 'a'
+        time.sleep(5)
+                
 
 
 def make_email(sender, name, email_add, current_date):
@@ -164,7 +171,7 @@ def distribute_emails():
             elif current_time.tm_hour == 1 and current_time.tm_min == 0:
                 EMAIL_SENT_TODAY = False
 
-            time.sleep(30)
+            time.sleep(360)
             pass
 
 
@@ -185,15 +192,6 @@ def get_date(sense):
     sense.show_message("Date: %s " % (local_time), back_colour=BACK_COLOUR,
                        text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
     return
-
-
-def dance_baby(sense):
-    return
-
-
-# def end_program():
-#     time.sleep(36)
-#     os._exit(1)
 
 
 if __name__ == "__main__":
