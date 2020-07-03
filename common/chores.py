@@ -10,12 +10,14 @@ import numpy
 import json
 
 ALL_PEOPLE = numpy.array(['B', 'F', 'J', 'M', 'T'])
+NUMBER_PEOPLE = len(ALL_PEOPLE)
+
 DAILY_CHORES = {
     "Walk Dogs": ALL_PEOPLE,
     "Dishes": ALL_PEOPLE[[1, 2, 3, 4, 0]],
-    "Dinner": ALL_PEOPLE[[2, 3, 4, 0]],
-    "Feed Animals": ALL_PEOPLE[[3, 4, 0, 2]],
-    "Chickens": ALL_PEOPLE[[1,1,1,1]],
+    "Dinner": ALL_PEOPLE[[2, 3, 4, 0]*NUMBER_PEOPLE], 
+    "Feed Animals": ALL_PEOPLE[[3, 4, 0, 2]*NUMBER_PEOPLE],
+    "Chickens": ALL_PEOPLE[[1]*NUMBER_PEOPLE],
     "Tidy Room": ALL_PEOPLE[[4, 0, 1, 2, 3]]
 }
 
@@ -29,7 +31,7 @@ WEEKLY_CHORES = {
     "Shopping": ALL_PEOPLE[[0, 4, 2, 3, 1]]
 }
 
-NUMBER_PEOPLE = len(ALL_PEOPLE)
+
 
 CHORE_TXT = '/home/pi/Documents/home_chores_project/raspberry-pi-home-project/day_log.txt'
 
