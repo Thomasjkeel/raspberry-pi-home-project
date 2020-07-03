@@ -21,12 +21,12 @@ DAILY_CHORES = {
 
 WEEKLY_CHORES = {
     "Hoovering": ALL_PEOPLE,
-    "Bathrooms": ALL_PEOPLE[[1, 2, 3, 0]],
-    "Kitchen": ALL_PEOPLE[[2, 3, 0, 1]],
-    "Bins and Recycling": ALL_PEOPLE[[3, 0, 1, 2]],
-    "Dusting": ALL_PEOPLE[[0, 1, 2, 3]],
-    "Watering": ALL_PEOPLE[[1, 2, 3, 0]],
-    "Shopping": ALL_PEOPLE[[2, 3, 2, 3]]
+    "Bathrooms": ALL_PEOPLE[[1, 2, 3, 4, 0]],
+    "Kitchen": ALL_PEOPLE[[2, 3, 4, 0, 1]],
+    "Bins and Recycling": ALL_PEOPLE[[3, 4, 0, 1, 2]],
+    "Dusting": ALL_PEOPLE,
+    "Watering": ALL_PEOPLE[[4, 0, 1, 2, 3]],
+    "Shopping": ALL_PEOPLE[[0, 4, 2, 3, 1]]
 }
 
 NUMBER_PEOPLE = len(ALL_PEOPLE)
