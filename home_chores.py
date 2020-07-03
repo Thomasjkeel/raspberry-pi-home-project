@@ -20,6 +20,15 @@
     LEFT*2: Show controls
     MIDDLE : Random event chooser
 
+    Operation Times:
+    ======================
+    Emailing:
+        - will send emails at a given hour and minute (see EMAIL_TIME_HOUR & EMAIL_TIME_MINUTE)
+
+    Powering off (to save energy):
+        - will power off at a given time (see POWER_OFF_HOUR & POWER_OFF_MINUTE)
+
+
     Notes:
     ====================
     Email addresses will need to be stored in a seperate file within the Raspberry Pi's filesystem.
@@ -55,6 +64,8 @@ with open(EMAIL_ADRESSES_TXT, 'rb') as json_file:
 
 EMAIL_TIME_HOUR = 7
 EMAIL_TIME_MINUTE = 30
+POWER_OFF_HOUR = 10
+POWER_OFF_MINUTE = 1
 SEND_EMAILS = True
 EMAIL_SENT_TODAY = False
 SCROLL_SPEED = (0.05)
@@ -147,7 +158,6 @@ def make_email(sender, name, email_add, current_date):
     emailContent = "Hello %s! <br><br> Your Daily Chores for today are: <br> <ul> %s </ul> <br><br> Chores which will \
         need to be completed by this Sunday are: <br> <ul> %s </ul> <br><br>. Have a good day, <br>Raspberry Pi out." % (name, daily_chores, weekly_chores)
     sender.sendmail(email_add, emailSubject, emailContent)
-    print(name, 'sent!')
     return
 
 
@@ -163,15 +173,18 @@ def distribute_emails():
                 sender = emailer.Emailer()
                 for name in EMAIL_ADDRESSES.keys():
                     current_date = datetime.datetime.now().strftime('%d %b')
-                    print(name, EMAIL_ADDRESSES[name])
                     make_email(sender, name, EMAIL_ADDRESSES[name], current_date)
                 sense.show_message('all emails sent',  back_colour=BACK_COLOUR,
                                    text_colour=TEXT_COLOUR, scroll_speed=SCROLL_SPEED)
                 EMAIL_SENT_TODAY = True
             elif current_time.tm_hour == 1 and current_time.tm_min == 0:
                 EMAIL_SENT_TODAY = False
-
-            time.sleep(360)
+            elif current_time.tm_hour == POWER_OFF_HOUR and current_time.tm_min == POWER_OFF_MINUTE:
+                sense.show_message(
+                    'powering off...', text_colour=r, scroll_speed=SCROLL_SPEED)
+                time.sleep(10)
+                os._exit(1)
+            time.sleep(30)
             pass
 
 
